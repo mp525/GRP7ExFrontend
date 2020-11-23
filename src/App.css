@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+.bookTheme {
+  background-color: rgb(253, 188, 104);
+  box-shadow: chocolate 1px 20px 5px;
+}
+.bookTheme2 {
+  box-shadow: chocolate 1px 2px 5px;
+
+}
+.bookTheme3 {
+  box-shadow: chocolate 1px 2px 5px;
+
+}

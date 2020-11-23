@@ -3,7 +3,9 @@ import {
     userInfoEndpoint,
     adminInfoEndpoint,
     defaultEndpoint,
-    loginEndpoint} from "./settings";
+    loginEndpoint,
+  books,review
+} from "./settings";
 
  
 function handleHttpErrors(res) {
@@ -55,7 +57,21 @@ const fetchDefault = (callback) => {
    .then(data => {callback(data)})
    
 }
-
+const fetchBooks = (callback,title) => {
+  const options = makeOptions("GET"); 
+  console.log(mainURL + books,title, options);
+ return fetch(mainURL + books+title, options)
+ .then(handleHttpErrors)
+ .then(data => {callback(data)})
+ 
+}
+const fetchReviews = (callback,title) => {
+  const options = makeOptions("GET"); 
+ return fetch(mainURL + review+title, options)
+ .then(handleHttpErrors)
+ .then(data => {callback(data)})
+ 
+}
 
 const makeOptions= (method,addToken,body) =>{
    var opts = {
@@ -82,7 +98,9 @@ const makeOptions= (method,addToken,body) =>{
      logout,
      fetchDataUser,
      fetchDataAdmin,
-     fetchDefault
+     fetchDefault,
+     fetchBooks,
+     fetchReviews
  }
 }
 const facade = apiFacade();
