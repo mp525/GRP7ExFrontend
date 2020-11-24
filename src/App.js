@@ -15,7 +15,7 @@ import LoggedIn from "./LoggedIn";
 import LoginForm from "./loginForm";
 import UserPage1 from "./UserPage1";
 import FrontPage from "./Frontpage";
-
+import AdminPage from './AdminPage';
 
 function App() {
   const [errorMes, setErrorMes] = useState("");
@@ -62,6 +62,7 @@ function App() {
         </Route>
         <Route path="/page4">
           <Admin />
+          <AdminPage/>
         </Route>
         <Route path="/login">
           {!loggedIn ? (
@@ -133,12 +134,12 @@ function Header({ loggedIn, loginMsg }) {
         <>
           <li>
             <NavLink activeClassName="active" to="/page3">
-              Page 3
+              User Page 1
             </NavLink>
           </li>
           <li>
             <NavLink exact activeClassName="active" to="/page4">
-              Page 4
+              Admin Page 1
             </NavLink>
           </li>
         </>
