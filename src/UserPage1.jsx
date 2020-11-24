@@ -40,8 +40,8 @@ function UserPage1() {
       <>
       <div align="center">
           <div className="bookTheme">
-        <h1>Books and reviews</h1>
-         <img src={Books} alt="books" width={1100} height={200}/>
+        
+         <img src={Books} alt="books" width={1100} height={330}/>
 
          <div className="bookTheme2">
         <h3>

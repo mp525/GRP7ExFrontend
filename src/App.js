@@ -14,6 +14,7 @@ import facade from "./apiFacade";
 import LoggedIn from "./LoggedIn";
 import LoginForm from "./loginForm";
 import UserPage1 from "./UserPage1";
+import FrontPage from "./Frontpage";
 
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
       <Header loginMsg={loggedIn ? "Logout" : "Login"} loggedIn={loggedIn} />
       <Switch>
         <Route exact path="/">
-          <Home />
+          <FrontPage/>
         </Route>
         <Route path="/page1">
           <FetchDefault />
@@ -160,22 +161,7 @@ function NoMatch() {
   );
 }
 
-function Home() {
-  return (
-    <>
-      <h3>Use instructions</h3>
-      <p>
-        In settings.js, change the URL's to match the current project.<br/>
-        Refactor navlinks to match project domain.<br/>
-        Page 1 diplayes fetched results from default endpoint in backend.<br/>
-        Page 2 is a blank slate. <br/>
-        Login page allows a user to login, if username and password is in the database.<br/>
-        Page 3 (after login) shows info about the user.<br/>
-        Page 4 (after login) shows info about admin user.
-      </p>
-    </>
-  );
-}
+
 
 function Placeholder() {
   return <h3>TODO</h3>;
