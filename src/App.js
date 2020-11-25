@@ -16,6 +16,7 @@ import LoginForm from "./loginForm";
 import UserPage1 from "./UserPage1";
 import FrontPage from "./Frontpage";
 import AdminPage from './AdminPage';
+import Footer from './Footer';
 
 function App() {
   const [errorMes, setErrorMes] = useState("");
@@ -49,20 +50,25 @@ function App() {
       <Switch>
         <Route exact path="/">
           <FrontPage/>
+          <Footer/>
         </Route>
         <Route path="/page1">
           <FetchDefault />
+          <Footer/>
         </Route>
         <Route path="/page2">
           <Placeholder />
+          <Footer/>
         </Route>
         <Route path="/page3">
           <User />
           <UserPage1/>
+          <Footer/>
         </Route>
         <Route path="/page4">
           <Admin />
           <AdminPage/>
+          <Footer/>
         </Route>
         <Route path="/login">
           {!loggedIn ? (
