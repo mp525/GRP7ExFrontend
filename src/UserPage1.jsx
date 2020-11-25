@@ -71,6 +71,7 @@ function UserPage1() {
          })
          }</tbody>   
         </table>
+        
         </div>
 
         <div className="bookTheme3">
@@ -99,6 +100,27 @@ function UserPage1() {
                  <td>{x.book_author}</td>
                  <td>{x.summary}</td>
                  </tr>
+         })
+         }</tbody>   
+        </table>
+        <h3>Reviewed books</h3>
+        <table className="table"> 
+        <thead>
+           <tr>
+           <th>Review Written by</th>
+           <th>Link</th>
+           
+           
+           </tr>
+           </thead>
+
+           <tbody>{books.map(x=>{
+             if(x.url!=null){
+             return <tr>
+                <th>{x.byline}</th>
+           <th><a href={x.url}>{x.book_title}</a></th>
+                 
+                 </tr>}
          })
          }</tbody>   
         </table>
