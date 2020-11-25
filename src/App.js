@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
+import Stories from './Stories.jpg';
 
 import {
   BrowserRouter as Router,
@@ -72,7 +73,7 @@ function App() {
               login={login}
             />
           ) : (
-            <div>
+            <div className="logoutPage2">
               <LoggedIn />
               <button onClick={logout}>Logout</button>
             </div>
