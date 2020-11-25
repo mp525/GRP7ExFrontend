@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Stories from './Stories.jpg';
 
 function LogInForm({ login, errorMes ,setErrorMes}) {
     const init = { username: "", password: "" };
@@ -18,7 +19,9 @@ function LogInForm({ login, errorMes ,setErrorMes}) {
     }
    
     return (
-      <div>
+      <div className="loginPage">
+        <img src={Stories} alt="books" width={1000} height={300} />
+        <br /><br />
         <h2>Login</h2>
         <form onChange={onChange} >
           <input placeholder="User Name" id="username" />

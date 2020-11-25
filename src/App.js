@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
+import Stories from './Stories.jpg';
 
 import {
   BrowserRouter as Router,
@@ -16,6 +17,8 @@ import LoginForm from "./loginForm";
 import UserPage1 from "./UserPage1";
 import FrontPage from "./Frontpage";
 import Iframe from 'react-iframe';
+import AdminPage from './AdminPage';
+import Footer from './Footer';
 
 
 function App() {
@@ -50,19 +53,25 @@ function App() {
       <Switch>
         <Route exact path="/">
           <FrontPage/>
+          <Footer/>
         </Route>
         <Route path="/page1">
           <FetchDefault />
+          <Footer/>
         </Route>
         <Route path="/page2">
           <Placeholder />
+          <Footer/>
         </Route>
         <Route path="/page3">
           <User />
           <UserPage1/>
+          <Footer/>
         </Route>
         <Route path="/page4">
           <Admin />
+          <AdminPage/>
+          <Footer/>
         </Route>
         <Route path="/login">
           {!loggedIn ? (
@@ -72,7 +81,7 @@ function App() {
               login={login}
             />
           ) : (
-            <div>
+            <div className="logoutPage2">
               <LoggedIn />
               <button onClick={logout}>Logout</button>
             </div>
@@ -134,12 +143,12 @@ function Header({ loggedIn, loginMsg }) {
         <>
           <li>
             <NavLink activeClassName="active" to="/page3">
-              Page 3
+              User Page 1
             </NavLink>
           </li>
           <li>
             <NavLink exact activeClassName="active" to="/page4">
-              Page 4
+              Admin Page 1
             </NavLink>
           </li>
         </>
