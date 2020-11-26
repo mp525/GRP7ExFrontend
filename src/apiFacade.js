@@ -58,7 +58,7 @@ const fetchDefault = (callback) => {
    
 }
 const fetchBooks = (callback,title) => {
-  const options = makeOptions("GET"); 
+  const options = makeOptions("GET",true); 
   console.log(mainURL + books,title, options);
  return fetch(mainURL + books+title, options)
  .then(handleHttpErrors)
