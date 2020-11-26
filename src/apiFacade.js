@@ -4,7 +4,8 @@ import {
     adminInfoEndpoint,
     defaultEndpoint,
     loginEndpoint,
-  books,review
+  books,review,
+  bookReviews
 } from "./settings";
 
  
@@ -65,6 +66,15 @@ const fetchBooks = (callback,title) => {
  .then(data => {callback(data)})
  
 }
+
+const fetchBookReviews = (callback,title) => {
+  const options = makeOptions("GET",true); 
+  console.log(mainURL + bookReviews,title, options);
+ return fetch(mainURL + bookReviews+title, options)
+ .then(handleHttpErrors)
+ .then(data => {callback(data)})
+ 
+}
 const fetchReviews = (callback,title) => {
   const options = makeOptions("GET",true); 
  return fetch(mainURL + review+title, options)
@@ -100,7 +110,8 @@ const makeOptions= (method,addToken,body) =>{
      fetchDataAdmin,
      fetchDefault,
      fetchBooks,
-     fetchReviews
+     fetchReviews,
+     fetchBookReviews
  }
 }
 const facade = apiFacade();

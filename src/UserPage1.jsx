@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import Books from "./Books.jpg";
 import "./App.css";
 import api from "./apiFacade";
+import ReviewWidget from "./ReviewWidget";
+import Iframe from 'react-iframe';
+
 function UserPage1() {
+  const [reviews, setReviews] = useState({});
   const [books, setBooks] = useState([]);
   const [film, setFilm] = useState([]);
   const [title, setTitle] = useState("");
@@ -25,13 +29,15 @@ function UserPage1() {
     console.log(title);
     console.log(api.fetchBooks);
     api.fetchBooks(setBooks, title);
+    api.fetchBookReviews(setReviews, title);
+    
   };
   const submitTitle2 = () => {
     console.log(title);
 
     api.fetchReviews(setFilm, title2);
   };
-
+  console.log(reviews)
   return (
     <>
       <div align="center">
@@ -76,7 +82,7 @@ function UserPage1() {
             <input type="text" id="title" onChange={handleChange} />
             <button onClick={submitTitle}>Get By Title</button>
             <br />
-            <br />
+            <h4>NYT reviews:</h4>
             <table className="table">
               <thead>
                 <tr>
@@ -102,8 +108,9 @@ function UserPage1() {
                 })}
               </tbody>
             </table>
-            <h3>Reviewed books</h3>
+            <h3>NYT review links:</h3>
             <table className="table">
+              
               <thead>
                 <tr>
                   <th>Review Written by</th>
@@ -125,6 +132,8 @@ function UserPage1() {
                 })}
               </tbody>
             </table>
+            <h4>Goodreads reviews:</h4>
+            <ReviewWidget goodreads={reviews.goodreads} isbm={reviews.isbm}/>
           </div>
           <br />
           <br />
@@ -132,7 +141,11 @@ function UserPage1() {
           <br />
           <br />
           <br />
+          
         </div>
+        
+                
+        
       </div>
     </>
   );
