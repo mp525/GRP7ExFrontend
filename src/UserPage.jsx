@@ -17,7 +17,7 @@ function UserPage() {
                         <h2>Publication Date</h2><input type="text" className="i1"/>
 
                         <h2>Summary Short</h2><textarea rows = "5" cols = "60" name = "description" className="i2">Enter details here...</textarea>
-                        <br/><button>Add review</button>
+                        <br/><button className="myButton">Add review</button>
                         </div>
                     </form>
                     <br /><br /><br /><br /><br /><br /><br /><br />

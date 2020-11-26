@@ -48,8 +48,8 @@ function UserPage1() {
             <h3>Table of Film Reviews</h3>
             <br />
             <br />
-            <input type="text" id="title2" onChange={handleChange2} />
-            <button onClick={submitTitle2}>Get By Title</button>
+            <input type="text" id="title2" onChange={handleChange2} className="i1"/>
+            <button onClick={submitTitle2} className="myButton">Get By Title</button>
             <br />
             <br />
             <table className="table">
@@ -79,8 +79,8 @@ function UserPage1() {
 
           <div className="bookTheme3">
             <h3>Table of Book reviews</h3>
-            <input type="text" id="title" onChange={handleChange} />
-            <button onClick={submitTitle}>Get By Title</button>
+            <input type="text" id="title" onChange={handleChange} className="i1"/>
+            <button onClick={submitTitle} className="myButton">Get By Title</button>
             <br />
             <h4>NYT reviews:</h4>
             <table className="table">

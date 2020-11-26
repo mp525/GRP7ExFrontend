@@ -85,15 +85,15 @@
   width: 60%;
 }
 .i1{
- font-size: x-large;
+ font-size: large;
 }
 .i2{
-  font-size: x-large;
+  font-size: large;
   width: 60%;
   height: 200%;
 }
 .myButton{
-  font-size: 150%;
+  font-size: 120%;
   color: rgb(255, 255, 255);
   background-color: rgb(139, 67, 0);
   box-shadow: white 1px 2px;
