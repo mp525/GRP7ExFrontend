@@ -115,10 +115,10 @@ function UserPage1() {
                   if (x.url != null) {
                     return (
                       <tr>
-                        <th>{x.byline}</th>
-                        <th>
+                        <td>{x.byline}</td>
+                        <td>
                           <a href={x.url}>{x.book_title}</a>
-                        </th>
+                        </td>
                       </tr>
                     );
                   }

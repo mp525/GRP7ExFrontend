@@ -19,6 +19,7 @@ import FrontPage from "./Frontpage";
 import Iframe from 'react-iframe';
 import AdminPage from './AdminPage';
 import Footer from './Footer';
+import UserPage from './UserPage';
 
 
 function App() {
@@ -66,6 +67,11 @@ function App() {
         <Route path="/page3">
           <User />
           <UserPage1/>
+          <Footer/>
+        </Route>
+        <Route path="/userPage">
+          <User />
+          <UserPage/>
           <Footer/>
         </Route>
         <Route path="/page4">
@@ -144,6 +150,11 @@ function Header({ loggedIn, loginMsg }) {
           <li>
             <NavLink activeClassName="active" to="/page3">
               User Page 1
+            </NavLink>
+          </li>
+          <li>
+            <NavLink activeClassName="active" to="/userPage">
+              User Page
             </NavLink>
           </li>
           <li>

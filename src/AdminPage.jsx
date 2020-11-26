@@ -9,6 +9,7 @@ function AdminPage() {
             <div align="center">
                 <div className="bookTheme">
                     <img src={Admin} alt="books" width={1000} height={300} />
+                    
                     <br /><br /><br /><br /><br /><br /><br /><br />
                     <br /><br /><br /><br /><br /><br /><br /><br />
                 </div>
