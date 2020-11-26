@@ -6,6 +6,7 @@ const adminInfoEndpoint = "/api/info/admin";
 const defaultEndpoint = "/api/default";
 const loginEndpoint = "/api/login";
 const books = "/api/books/reviewsOld/";
+const bookReviews = "/api/books/reviews/";
 const review="/api/film/review/";
 export {
     mainURL,
@@ -14,5 +15,6 @@ export {
     defaultEndpoint,
     loginEndpoint,
     books,
+    bookReviews,
     review
 };
