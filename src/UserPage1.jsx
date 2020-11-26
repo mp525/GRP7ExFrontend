@@ -28,8 +28,9 @@ function UserPage1() {
   const submitTitle = () => {
     console.log(title);
     console.log(api.fetchBooks);
-    api.fetchBooks(setBooks, title);
-    api.fetchBookReviews(setReviews, title);
+    //api.fetchBooks(setBooks, title);
+    api.fetchBookReviews(setReviews,setBooks, title);
+    
     
   };
   const submitTitle2 = () => {
