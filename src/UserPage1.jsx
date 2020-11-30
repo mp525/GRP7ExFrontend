@@ -42,10 +42,10 @@ function UserPage1() {
     <>
       <div align="center">
         <div className="bookTheme">
-          <img src={Books} alt="books" width={1100} height={330} />
+          <img src={Books} alt="books" className="pic" />
 
           <div className="bookTheme2">
-            <h3>Table of Film Reviews</h3>
+            <h1>Table of Film Reviews</h1>
             <br />
             <br />
             <input type="text" id="title2" onChange={handleChange2} className="i1"/>
@@ -78,7 +78,7 @@ function UserPage1() {
           </div>
 
           <div className="bookTheme3">
-            <h3>Table of Book reviews</h3>
+            <h1>Table of Book reviews</h1>
             <input type="text" id="title" onChange={handleChange} className="i1"/>
             <button onClick={submitTitle} className="myButton">Get By Title</button>
             <br />

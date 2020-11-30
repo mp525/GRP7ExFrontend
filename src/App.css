@@ -90,11 +90,13 @@
 .i2{
   font-size: large;
   width: 60%;
-  height: 200%;
 }
 .myButton{
   font-size: 120%;
   color: rgb(255, 255, 255);
   background-color: rgb(139, 67, 0);
   box-shadow: white 1px 2px;
+}
+.pic{
+  width: 57%;
 }

@@ -6,14 +6,16 @@ function FrontPage() {
         <>
             <div align="center">
                 <div className="bookTheme">
-                    <img src={Stories} alt="books" width={1000} height={300} />
+                    <img src={Stories} alt="books" className="pic" />
                     <br /><br />
-                    <i><h2>Walking down the path of <b>stories</b> you see meaning and hope.</h2>
-                    <h2>You get inspired, pulled in and sometimes drowned</h2>
-                    <h2>All life is, is a story</h2>
+                    <i>“The most amazing thing for me is that every single person who sees a movie, <br />
+                        not necessarily one of my movies, brings a whole set of unique experiences, <br />
+                        but through careful manipulation and good storytelling, <br />
+                        you can get everybody to clap at the same time, to hopefully laugh at the same time, <br />
+                        and to be afraid at the same time.” - Steven Spielberg, filmmaker<br />
                     <br /><br /><br />
                     <h2>
-                        andet poetisk, la di da 
+                        
                     </h2>
                     </i>
                     

@@ -8,7 +8,7 @@ function UserPage() {
         <>
             <div align="center">
                 <div className="bookTheme">
-                <img src={Stories} alt="books" width={1000} height={300} />
+                <img src={Stories} alt="books" className="pic" />
                     <h2>This is a page made so that our users can make their one reviews</h2>
                     <form>
                         <div className="summary">
