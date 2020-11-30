@@ -21,9 +21,10 @@ function ReviewWidget(props) {
         const withIsbn = noStyle.replace("stars=000", "isbn="+props.isbm.identifier);
         const withDevID = withIsbn.replace("DEVELOPER_ID", "125110241");
         //setWidget(withDevID);
-        console.log(withDevID);
+        const withP = withDevID.replace("<h1>", "<h1>More reviews on: ");
+        console.log(withP);
         var parse = require('html-react-parser');
-        return parse(withDevID);
+        return parse(withP);
     }
 
     //str.trim("\n");
@@ -42,6 +43,7 @@ function ReviewWidget(props) {
     };
   
     return <div>
+        
         {prepareWidget()}{console.log("reviewparse")}
         {/*prepareWidget()*/}
     {/* <div dangerouslySetInnerHTML={createMarkup()}/> */}

@@ -67,12 +67,13 @@ const fetchBooks = (callback,title) => {
  
 }
 
-const fetchBookReviews = (callback,title) => {
+const fetchBookReviews = (callback,callback2,title) => {
   const options = makeOptions("GET",true); 
   console.log(mainURL + bookReviews,title, options);
  return fetch(mainURL + bookReviews+title, options)
  .then(handleHttpErrors)
- .then(data => {callback(data)})
+ .then(data => {callback(data)
+  callback2(data.bookDTOs)})
  
 }
 const fetchReviews = (callback,title) => {
