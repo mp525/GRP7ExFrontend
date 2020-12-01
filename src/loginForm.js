@@ -14,6 +14,11 @@ function LogInForm({ login, errorMes ,setErrorMes}) {
       login(loginCredentials.username, loginCredentials.password)
       
     }
+    const performRegister = (evt) => {
+      evt.preventDefault();
+      //register
+      //then login??
+    }
     const onChange = (evt) => {
       setLoginCredentials({ ...loginCredentials,[evt.target.id]: evt.target.value })
     }
@@ -28,7 +33,13 @@ function LogInForm({ login, errorMes ,setErrorMes}) {
           <input placeholder="Password" id="password" />
           <button onClick={performLogin}>Login</button>
         </form>
-    <p>{errorMes}</p>
+        <p>{errorMes}</p>
+        <h2>Register</h2>
+        <form onChange={onChange}>
+          <input placeholder="User Name" id="username" />
+          <input placeholder="Password" id="password" />
+          <button onClick={performRegister}>Register</button>
+        </form>
       </div>
     )
    
