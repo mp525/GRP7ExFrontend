@@ -9,6 +9,7 @@ const loginEndpoint = "/api/login";
 const books = "/api/books/reviewsOld/";
 const bookReviews = "/api/books/reviews/";
 const review="/api/film/review/";
+const addBookReview = "/api/books/add";
 export {
     mainURL,
     userInfoEndpoint,
@@ -17,5 +18,6 @@ export {
     loginEndpoint,
     books,
     bookReviews,
-    review
+    review,
+    addBookReview
 };

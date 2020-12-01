@@ -10,6 +10,8 @@ import {
   useLocation,
   useHistory,
 } from "react-router-dom";
+import { Card } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./Login";
 import facade from "./apiFacade";
 import LoggedIn from "./LoggedIn";
@@ -65,17 +67,17 @@ function App() {
           <Footer/>
         </Route>
         <Route path="/page3">
-          <User />
+          {/* <User /> */}
           <UserPage1/>
           <Footer/>
         </Route>
         <Route path="/userPage">
-          <User />
-          <UserPage/>
+          {/* <User /> */}
+          <UserPage facade={facade}/>
           <Footer/>
         </Route>
         <Route path="/page4">
-          <Admin />
+          {/* <Admin /> */}
           <AdminPage/>
           <Footer/>
         </Route>

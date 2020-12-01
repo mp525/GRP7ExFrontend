@@ -1,119 +1,144 @@
 import {
-    mainURL,
-    userInfoEndpoint,
-    adminInfoEndpoint,
-    defaultEndpoint,
-    loginEndpoint,
-  books,review,
-  bookReviews
+  mainURL,
+  userInfoEndpoint,
+  adminInfoEndpoint,
+  defaultEndpoint,
+  loginEndpoint,
+  books,
+  review,
+  bookReviews,
+  addBookReview,
 } from "./settings";
 
- 
 function handleHttpErrors(res) {
- if (!res.ok) {
-   return Promise.reject({ status: res.status, fullError: res.json() })
- }
- return res.json();
-}
- 
-function apiFacade() {
- /* Insert utility-methods from a latter step (d) here (REMEMBER to uncomment in the returned object when you do)*/
- 
- const setToken = (token) => {
-    localStorage.setItem('jwtToken', token)
+  if (!res.ok) {
+    return Promise.reject({ status: res.status, fullError: res.json() });
   }
-const getToken = () => {
-  return localStorage.getItem('jwtToken')
-}
-const loggedIn = () => {
-  const loggedIn = getToken() != null;
-  return loggedIn;
-}
-const logout = () => {
-  localStorage.removeItem("jwtToken");
+  return res.json();
 }
 
+function apiFacade() {
+  /* Insert utility-methods from a latter step (d) here (REMEMBER to uncomment in the returned object when you do)*/
 
-const login = (user, password) => {
-    const options = makeOptions("POST", true,{username: user, password: password });
+  const setToken = (token) => {
+    localStorage.setItem("jwtToken", token);
+  };
+  const getToken = () => {
+    return localStorage.getItem("jwtToken");
+  };
+  const loggedIn = () => {
+    const loggedIn = getToken() != null;
+    return loggedIn;
+  };
+  const logout = () => {
+    localStorage.removeItem("jwtToken");
+  };
+
+  const login = (user, password) => {
+    const options = makeOptions("POST", true, {
+      username: user,
+      password: password,
+    });
     return fetch(mainURL + loginEndpoint, options)
       .then(handleHttpErrors)
-      .then(res => {setToken(res.token) })
-      
-      
-}
-const fetchDataUser = () => {
-    const options = makeOptions("GET",true); //True add's the token
-   return fetch(mainURL + userInfoEndpoint, options).then(handleHttpErrors);
-}
-const fetchDataAdmin = () => {
-    const options = makeOptions("GET",true); //True add's the token
-   return fetch(mainURL + adminInfoEndpoint, options).then(handleHttpErrors);
-}
+      .then((res) => {
+        setToken(res.token);
+      });
+  };
+  const fetchDataUser = () => {
+    const options = makeOptions("GET", true); //True add's the token
+    return fetch(mainURL + userInfoEndpoint, options).then(handleHttpErrors);
+  };
+  const fetchDataAdmin = () => {
+    const options = makeOptions("GET", true); //True add's the token
+    return fetch(mainURL + adminInfoEndpoint, options).then(handleHttpErrors);
+  };
 
-const fetchDefault = (callback) => {
-    const options = makeOptions("GET"); 
-   return fetch(mainURL + defaultEndpoint, options)
-   .then(handleHttpErrors)
-   .then(data => {callback(data)})
-   
-}
-const fetchBooks = (callback,title) => {
-  const options = makeOptions("GET",true); 
-  console.log(mainURL + books,title, options);
- return fetch(mainURL + books+title, options)
- .then(handleHttpErrors)
- .then(data => {callback(data)})
- 
-}
+  const isAdmin = () => {
+    const jwtData = getToken().split(".")[1];
+    const decodedJwtJsonData = window.atob(jwtData);
+    const decodedJwtData = JSON.parse(decodedJwtJsonData);
+    const isAdmin = decodedJwtData.roles;
+    return isAdmin;
+  }
 
-const fetchBookReviews = (callback,callback2,title) => {
-  const options = makeOptions("GET",true); 
-  console.log(mainURL + bookReviews,title, options);
- return fetch(mainURL + bookReviews+title, options)
- .then(handleHttpErrors)
- .then(data => {callback(data)
-  callback2(data.bookDTOs)})
- 
-}
-const fetchReviews = (callback,title) => {
-  const options = makeOptions("GET",true); 
- return fetch(mainURL + review+title, options)
- .then(handleHttpErrors)
- .then(data => {callback(data)})
- 
-}
 
-const makeOptions= (method,addToken,body) =>{
-   var opts = {
-     method: method,
-     headers: {
-       "Content-type": "application/json",
-       'Accept': 'application/json',
-     }
-   }
-   if (addToken && loggedIn()) {
-     opts.headers["x-access-token"] = getToken();
-   }
-   if (body) {
-     opts.body = JSON.stringify(body);
-   }
-   return opts;
- }
- return {
-     makeOptions,
-     setToken,
-     getToken,
-     loggedIn,
-     login,
-     logout,
-     fetchDataUser,
-     fetchDataAdmin,
-     fetchDefault,
-     fetchBooks,
-     fetchReviews,
-     fetchBookReviews
- }
+  const fetchDefault = (callback) => {
+    const options = makeOptions("GET");
+    return fetch(mainURL + defaultEndpoint, options)
+      .then(handleHttpErrors)
+      .then((data) => {
+        callback(data);
+      });
+  };
+  const fetchBooks = (callback, title) => {
+    const options = makeOptions("GET", true);
+    console.log(mainURL + books, title, options);
+    return fetch(mainURL + books + title, options)
+      .then(handleHttpErrors)
+      .then((data) => {
+        callback(data);
+      });
+  };
+
+  
+  const addBookRev = (bookReview) =>{
+    const options = makeOptions("POST", true, bookReview);
+    return fetch(mainURL + addBookReview, options)
+    .then(handleHttpErrors);
+  }
+
+  const fetchBookReviews = (callback, callback2, title) => {
+    const options = makeOptions("GET", true);
+    console.log(mainURL + bookReviews, title, options);
+    return fetch(mainURL + bookReviews + title, options)
+      .then(handleHttpErrors)
+      .then((data) => {
+        callback(data);
+        callback2(data.bookDTOs);
+      });
+  };
+  const fetchReviews = (callback, title) => {
+    const options = makeOptions("GET", true);
+    return fetch(mainURL + review + title, options)
+      .then(handleHttpErrors)
+      .then((data) => {
+        callback(data);
+      });
+  };
+
+  const makeOptions = (method, addToken, body) => {
+    var opts = {
+      method: method,
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+    };
+    if (addToken && loggedIn()) {
+      opts.headers["x-access-token"] = getToken();
+    }
+    if (body) {
+      opts.body = JSON.stringify(body);
+    }
+    return opts;
+  };
+  return {
+    makeOptions,
+    setToken,
+    getToken,
+    loggedIn,
+    login,
+    logout,
+    fetchDataUser,
+    fetchDataAdmin,
+    fetchDefault,
+    fetchBooks,
+    fetchReviews,
+    fetchBookReviews,
+    addBookRev,
+    isAdmin
+  };
 }
 const facade = apiFacade();
 export default facade;

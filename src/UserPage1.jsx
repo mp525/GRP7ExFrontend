@@ -3,7 +3,9 @@ import Books from "./Books.jpg";
 import "./App.css";
 import api from "./apiFacade";
 import ReviewWidget from "./ReviewWidget";
-import Iframe from 'react-iframe';
+import Iframe from "react-iframe";
+import facade from "./apiFacade";
+import { Card } from "react-bootstrap";
 
 function UserPage1() {
   const [reviews, setReviews] = useState({});
@@ -11,7 +13,20 @@ function UserPage1() {
   const [film, setFilm] = useState([]);
   const [title, setTitle] = useState("");
   const [title2, setTitle2] = useState("");
-  useEffect(() => {}, []);
+
+  const [errorUser, setErrorUser] = useState("");
+  const [dataFromServer, setDataFromServer] = useState("");
+
+  useEffect(() => {
+    facade
+      .fetchDataUser()
+      .then((data) => setDataFromServer(data.msg))
+      .catch((err) => {
+        err.fullError.then((err) => {
+          setErrorUser(err.message);
+        });
+      });
+  }, []);
 
   const handleChange = (event) => {
     const target = event.target;
@@ -29,124 +44,130 @@ function UserPage1() {
     console.log(title);
     console.log(api.fetchBooks);
     //api.fetchBooks(setBooks, title);
-    api.fetchBookReviews(setReviews,setBooks, title);
-    
-    
+    api.fetchBookReviews(setReviews, setBooks, title);
   };
   const submitTitle2 = () => {
     console.log(title);
 
     api.fetchReviews(setFilm, title2);
   };
-  console.log(reviews)
+  console.log(reviews);
   return (
     <>
       <div align="center">
         <div className="bookTheme">
           <img src={Books} alt="books" className="pic" />
-
-          <div className="bookTheme2">
-            <h1>Table of Film Reviews</h1>
-            <br />
-            <br />
-            <input type="text" id="title2" onChange={handleChange2} className="i1"/>
-            <button onClick={submitTitle2} className="myButton">Get By Title</button>
-            <br />
-            <br />
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>display_title</th>
-                  <th>headline</th>
-                  <th>summary_short</th>
-                  <th>publication_date</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {film.map((x) => {
-                  return (
+          {facade.isAdmin().indexOf("user") !== -1 && (
+            <>
+              <div className="bookTheme2">
+                <h1>Table of Film Reviews</h1>
+                <br />
+                <br />
+                <input
+                  type="text"
+                  id="title2"
+                  onChange={handleChange2}
+                  className="i1"
+                />
+                <button onClick={submitTitle2} className="myButton">
+                  Get By Title
+                </button>
+                <br />
+                <br />
+                <table className="table">
+                  <thead>
                     <tr>
-                      <td>{x.display_title}</td>
-                      <td>{x.headline}</td>
-                      <td>{x.summary_short}</td>
-                      <td>{x.publication_date}</td>
+                      <th>display_title</th>
+                      <th>headline</th>
+                      <th>summary_short</th>
+                      <th>publication_date</th>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+                  </thead>
 
-          <div className="bookTheme3">
-            <h1>Table of Book reviews</h1>
-            <input type="text" id="title" onChange={handleChange} className="i1"/>
-            <button onClick={submitTitle} className="myButton">Get By Title</button>
-            <br />
-            <h4>NYT reviews:</h4>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Publication</th>
-                  <th>Byline</th>
-                  <th>Title</th>
-                  <th>Author</th>
-                  <th>Summary</th>
-                </tr>
-              </thead>
+                  <tbody>
+                    {film.map((x) => {
+                      return (
+                        <tr>
+                          <td>{x.display_title}</td>
+                          <td>{x.headline}</td>
+                          <td>{x.summary_short}</td>
+                          <td>{x.publication_date}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
 
-              <tbody>
-                {books.map((x) => {
-                  return (
+              <div className="bookTheme3">
+                <h1>Table of Book reviews</h1>
+                <input
+                  type="text"
+                  id="title"
+                  onChange={handleChange}
+                  className="i1"
+                />
+                <button onClick={submitTitle} className="myButton">
+                  Get By Title
+                </button>
+                <br />
+                <h4>NYT reviews:</h4>
+                <table className="table">
+                  <thead>
                     <tr>
-                      <td>{x.publication_dt}</td>
-                      <td>{x.byline}</td>
-                      <td>{x.book_title}</td>
-                      <td>{x.book_author}</td>
-                      <td>{x.summary}</td>
+                      <th>Publication</th>
+                      <th>Byline</th>
+                      <th>Title</th>
+                      <th>Author</th>
+                      <th>Summary</th>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-            <h3>NYT review links:</h3>
-            <table className="table">
-              
-              <thead>
-                <tr>
-                  <th>Review Written by</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {books.map((x) => {
-                  if (x.url != null) {
-                    return (
-                      <tr>
-                        <td>{x.byline}</td>
-                        <td>
-                          <a href={x.url}>{x.book_title}</a>
-                        </td>
-                      </tr>
-                    );
-                  }
-                })}
-              </tbody>
-            </table>
-            <h4>Goodreads reviews:</h4>
-            <ReviewWidget goodreads={reviews.goodreads} isbm={reviews.isbm}/>
-          </div>
+                  </thead>
+
+                  <tbody>
+                    {books.map((x) => {
+                      return (
+                        <tr>
+                          <td>{x.publication_dt}</td>
+                          <td>{x.byline}</td>
+                          <td>{x.book_title}</td>
+                          <td>{x.book_author}</td>
+                          <td>{x.summary}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+                <h3>NYT review links:</h3>
+                <div align="center">
+                    <Card>
+                    {books.map((x) => {
+                      if (x.url != null && x.url != "none") {
+                        return (
+                          <div>
+                            {x.byline}'s review: <a href={x.url}>{x.book_title}</a>
+                          </div>
+                        );
+                      }
+                    })}
+                  </Card>
+                </div>
+                <h4>Goodreads reviews:</h4>
+                <ReviewWidget
+                  goodreads={reviews.goodreads}
+                  isbm={reviews.isbm}
+                />
+              </div>
+            </>
+          )}
+          <p>{errorUser}</p>
+
           <br />
           <br />
           <br />
           <br />
           <br />
           <br />
-          
         </div>
-        
-                
-        
       </div>
     </>
   );
