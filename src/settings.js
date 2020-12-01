@@ -5,6 +5,7 @@ const userInfoEndpoint = "/api/info/user";
 const adminInfoEndpoint = "/api/info/admin";
 const defaultEndpoint = "/api/default";
 const loginEndpoint = "/api/login";
+const registerEndpoint = "/api/info";
 const books = "/api/books/reviewsOld/";
 const bookReviews = "/api/books/reviews/";
 const review="/api/film/review/";
@@ -14,6 +15,7 @@ export {
     adminInfoEndpoint,
     defaultEndpoint,
     loginEndpoint,
+    registerEndpoint,
     books,
     bookReviews,
     review

@@ -25,6 +25,7 @@ import UserPage from './UserPage';
 function App() {
   const [errorMes, setErrorMes] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [dataFromServer, setDataFromServer] = useState("");
   let history = useHistory();
 
   const logout = () => {
@@ -41,6 +42,16 @@ function App() {
           setErrorMes(err.message);
         });
       });
+  };
+  const register = (user, pass) => {
+    facade
+    .register(user, pass)
+    .then((data) => setDataFromServer(data.msg))
+    .catch((err) => {
+      err.fullError.then((err) => {
+        setErrorMes(err.message);
+      });
+    });
   };
 
   const setLoginStatus = (status) => {
@@ -85,6 +96,9 @@ function App() {
               errorMes={errorMes}
               setErrorMes={setErrorMes}
               login={login}
+              register={register}
+              dataFromServer={dataFromServer}
+              setDataFromServer={setDataFromServer}
             />
           ) : (
             <div className="logoutPage2">

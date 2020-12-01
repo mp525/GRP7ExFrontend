@@ -4,6 +4,7 @@ import {
     adminInfoEndpoint,
     defaultEndpoint,
     loginEndpoint,
+    registerEndpoint,
   books,review,
   bookReviews
 } from "./settings";
@@ -42,6 +43,26 @@ const login = (user, password) => {
       
       
 }
+const register = (username, password) => {
+  const options = makeOptions2("POST", {username: username, password: password});
+  return fetch(mainURL + registerEndpoint, options)
+  .then(handleHttpErrors);
+}
+
+const makeOptions2 = (method,body) =>{
+  var opts = {
+    method: method,
+    headers: {
+      "Content-type": "application/json",
+      'Accept': 'application/json',
+    }
+  }
+  if (body) {
+    opts.body = JSON.stringify(body);
+  }
+  return opts;
+}
+
 const fetchDataUser = () => {
     const options = makeOptions("GET",true); //True add's the token
    return fetch(mainURL + userInfoEndpoint, options).then(handleHttpErrors);
@@ -102,10 +123,12 @@ const makeOptions= (method,addToken,body) =>{
  }
  return {
      makeOptions,
+     makeOptions2,
      setToken,
      getToken,
      loggedIn,
      login,
+     register,
      logout,
      fetchDataUser,
      fetchDataAdmin,
