@@ -100,3 +100,113 @@
 .pic{
   width: 57%;
 }
+
+@media only screen and (max-width: 850px) {
+  .App {
+    text-align: center;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .bookTheme {
+    background-color: rgb(253, 188, 104);
+    box-shadow: chocolate 1px 20px 5px;
+  }
+  .bookTheme2 {
+    box-shadow: chocolate 1px 2px 5px;
+  
+  }
+  .bookTheme3 {
+    box-shadow: chocolate 1px 2px 5px;
+  
+  }
+  
+  #goodreads-widget {    font-family: georgia, serif;    padding: 18px 0;    width:565px;  }  #goodreads-widget h1 {    font-weight:normal;    font-size: 16px;    border-bottom: 1px solid #BBB596;    margin-bottom: 0;  }  #goodreads-widget a {    text-decoration: none;    color:#660;  }  iframe{    background-color: #fff;  }  #goodreads-widget a:hover { text-decoration: underline; }  #goodreads-widget a:active {    color:#660;  }  #gr_footer {    width: 100%;    border-top: 1px solid #BBB596;    text-align: right;  }  #goodreads-widget .gr_branding{    color: #382110;    font-size: 11px;    text-decoration: none;    font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;  }
+  
+  .loginPage {
+    background-color: rgb(253, 188, 104);
+    margin: 0px;
+    padding: 0px;
+    min-height: 100%;
+    height: 700px;
+    text-align: center;
+  }
+  
+  .logoutPage {
+    background-color: rgb(253, 188, 104);
+    text-align: center;
+  }
+  
+  .logoutPage2 {
+    background-color: rgb(253, 188, 104);
+    text-align: center;
+    min-height: 100%;
+    height: 700px;
+  }
+  .footer {
+    background-color: rgb(177, 71, 0);
+  
+  }
+  .ftext{
+    color: whitesmoke;
+  }
+  
+  .summary{
+    color: rgb(78, 36, 2);
+    
+    width: 60%;
+  }
+  .i1{
+   font-size: large;
+  }
+  .i2{
+    font-size: large;
+    width: 60%;
+  }
+  .myButton{
+    font-size: 120%;
+    color: rgb(255, 255, 255);
+    background-color: rgb(139, 67, 0);
+    box-shadow: white 1px 2px;
+  }
+  .pic{
+    width: 100%;
+  }
+  .myRow{
+    
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+}
