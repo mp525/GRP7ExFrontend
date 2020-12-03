@@ -7,7 +7,8 @@ import {
     registerEndpoint,
   books,review,
   bookReviews,
-  addBookReview
+  addBookReview,
+  addFilmReview
 } from "./settings";
 
 function handleHttpErrors(res) {
@@ -107,6 +108,12 @@ const fetchDataAdmin = () => {
     .then(handleHttpErrors);
   }
 
+  const addFilmRev = (filmReview) => {
+    const options = makeOptions("POST", true, filmReview);
+    return fetch(mainURL + addFilmReview, options)
+    .then(handleHttpErrors);
+  }
+
   const fetchBookReviews = (callback, callback2, title) => {
     const options = makeOptions("GET", true);
     console.log(mainURL + bookReviews, title, options);
@@ -157,7 +164,8 @@ const fetchDataAdmin = () => {
     fetchReviews,
     fetchBookReviews,
     addBookRev,
-    isAdmin
+    isAdmin,
+    addFilmRev
   };
 }
 const facade = apiFacade();

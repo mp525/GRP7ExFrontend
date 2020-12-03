@@ -11,6 +11,7 @@ const books = "/api/books/reviewsOld/";
 const bookReviews = "/api/books/reviews/";
 const review="/api/film/review/";
 const addBookReview = "/api/books/add";
+const addFilmReview = "/api/film/add";
 export {
     mainURL,
     userInfoEndpoint,
@@ -21,5 +22,6 @@ export {
     books,
     bookReviews,
     review,
-    addBookReview
+    addBookReview,
+    addFilmReview
 };
