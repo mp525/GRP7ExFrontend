@@ -5,7 +5,7 @@ import api from "./apiFacade";
 import ReviewWidget from "./ReviewWidget";
 import Iframe from "react-iframe";
 import facade from "./apiFacade";
-import { Card } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 
 function UserPage1() {
   const [reviews, setReviews] = useState({});
@@ -41,17 +41,17 @@ function UserPage1() {
     setTitle2(value);
   };
   const submitTitle = () => {
-    console.log(title);
-    console.log(api.fetchBooks);
+    //console.log(title);
+    //console.log(api.fetchBooks);
     //api.fetchBooks(setBooks, title);
     api.fetchBookReviews(setReviews, setBooks, title);
   };
   const submitTitle2 = () => {
-    console.log(title);
+    //console.log(title);
 
     api.fetchReviews(setFilm, title2);
   };
-  console.log(reviews);
+  //console.log(reviews);
   return (
     <>
       <div align="center">
@@ -60,7 +60,7 @@ function UserPage1() {
           {facade.isAdmin().indexOf("user") !== -1 && (
             <>
               <div className="bookTheme2">
-                <h1>Table of Film Reviews</h1>
+                <h1>Film Reviews</h1>
                 <br />
                 <br />
                 <input
@@ -77,10 +77,10 @@ function UserPage1() {
                 <table className="table">
                   <thead>
                     <tr>
-                      <th>display_title</th>
-                      <th>headline</th>
-                      <th>summary_short</th>
-                      <th>publication_date</th>
+                      <th>Film title</th>
+                      <th>Headline</th>
+                      <th>Review</th>
+                      <th>Published</th>
                     </tr>
                   </thead>
 
@@ -100,7 +100,7 @@ function UserPage1() {
               </div>
 
               <div className="bookTheme3">
-                <h1>Table of Book reviews</h1>
+                <h1>Book reviews</h1>
                 <input
                   type="text"
                   id="title"
@@ -115,11 +115,11 @@ function UserPage1() {
                 <table className="table">
                   <thead>
                     <tr>
-                      <th>Publication</th>
-                      <th>Byline</th>
-                      <th>Title</th>
-                      <th>Author</th>
-                      <th>Summary</th>
+                      <th>Published</th>
+                      <th>Review Author</th>
+                      <th>Book Title</th>
+                      <th>Book Author</th>
+                      <th>Review summary</th>
                     </tr>
                   </thead>
 
@@ -139,7 +139,7 @@ function UserPage1() {
                 </table>
                 <h3>NYT review links:</h3>
                 <div align="center">
-                    <Card>
+                    <Card style={{ width: '20rem' }}>
                     {books.map((x) => {
                       if (x.url != null && x.url != "none") {
                         return (

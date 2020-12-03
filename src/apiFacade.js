@@ -8,7 +8,10 @@ import {
   books,review,
   bookReviews,
   addBookReview,
-  addFilmReview
+  addFilmReview,
+  userReviewsB,
+  deleteBookReview
+
 } from "./settings";
 
 function handleHttpErrors(res) {
@@ -101,6 +104,14 @@ const fetchDataAdmin = () => {
       });
   };
 
+  const deleteBookRev = (id, callback) => {
+    const options = makeOptions("DELETE", true);
+    return fetch(mainURL + deleteBookReview + id, options)
+    .then(handleHttpErrors)
+    .then((data) =>{
+      callback(data);
+    })
+  }
   
   const addBookRev = (bookReview) =>{
     const options = makeOptions("POST", true, bookReview);
@@ -116,7 +127,7 @@ const fetchDataAdmin = () => {
 
   const fetchBookReviews = (callback, callback2, title) => {
     const options = makeOptions("GET", true);
-    console.log(mainURL + bookReviews, title, options);
+    //console.log(mainURL + bookReviews, title, options);
     return fetch(mainURL + bookReviews + title, options)
       .then(handleHttpErrors)
       .then((data) => {
@@ -124,6 +135,18 @@ const fetchDataAdmin = () => {
         callback2(data.bookDTOs);
       });
   };
+
+  const fetchBookReviewsA = (callback, callback2, title) => {
+    const options = makeOptions("GET", true);
+    //console.log(mainURL + bookReviews, title, options);
+    return fetch(mainURL + userReviewsB + title, options)
+      .then(handleHttpErrors)
+      .then((data) => {
+        callback(data);
+        callback2(data.bookDTOs);
+      });
+  };
+
   const fetchReviews = (callback, title) => {
     const options = makeOptions("GET", true);
     return fetch(mainURL + review + title, options)
@@ -165,7 +188,9 @@ const fetchDataAdmin = () => {
     fetchBookReviews,
     addBookRev,
     isAdmin,
-    addFilmRev
+    addFilmRev,
+    fetchBookReviewsA,
+    deleteBookRev
   };
 }
 const facade = apiFacade();
