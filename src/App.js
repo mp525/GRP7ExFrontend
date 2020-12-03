@@ -74,10 +74,7 @@ function App() {
           <FetchDefault />
           <Footer/>
         </Route>
-        <Route path="/page2">
-          <Placeholder />
-          <Footer/>
-        </Route>
+        
         <Route path="/page3">
           {/* <User /> */}
           <UserPage1/>
@@ -154,29 +151,25 @@ function Header({ loggedIn, loginMsg }) {
       </li>
       <li>
         <NavLink activeClassName="active" to="/page1">
-          Page 1
+          About
         </NavLink>
       </li>
-      <li>
-        <NavLink activeClassName="active" to="/page2">
-          Page2
-        </NavLink>
-      </li>
+      
       {loggedIn && (
         <>
           <li>
             <NavLink activeClassName="active" to="/page3">
-              User Page 1
+              Reviews
             </NavLink>
           </li>
           <li>
             <NavLink activeClassName="active" to="/userPage">
-              User Page
+              Write Reviews
             </NavLink>
           </li>
           <li>
             <NavLink exact activeClassName="active" to="/page4">
-              Admin Page 1
+              Admin Page
             </NavLink>
           </li>
         </>

@@ -27,7 +27,7 @@ ul.header {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: rgb(26, 15, 0);
  }
  
  ul.header li { float: left;}
@@ -40,5 +40,13 @@ ul.header {
   text-decoration: none;
  }
  ul.header li a:hover:not(.active) { background-color: #111;}
- .active { background-color: #4CAF50;}
+ .active { background-color: #e7aa00;}
+
+ tr:nth-child(even) {background-color: #f2f2f2;}
+/* ul.header {
+
+  background-color: #333;
+ }
+
+ .active { background-color: #4CAF50;} */
  
