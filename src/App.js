@@ -48,12 +48,13 @@ function App() {
   const register = (user, pass) => {
     facade
     .register(user, pass)
-    .then((data) => setDataFromServer(data.msg))
-    .catch((err) => {
+    .then((res) => setLoggedIn(true))
+    // .then((data) => setDataFromServer(data.msg))
+    /* .catch((err) => {
       err.fullError.then((err) => {
         setErrorMes(err.message);
       });
-    });
+    }); */
   };
 
   const setLoginStatus = (status) => {

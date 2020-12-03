@@ -52,7 +52,8 @@ function apiFacade() {
 const register = (username, password) => {
   const options = makeOptions2("POST", {username: username, password: password});
   return fetch(mainURL + registerEndpoint, options)
-  .then(handleHttpErrors);
+  .then(handleHttpErrors)
+  .then(res => {setToken(res.token)})
 }
 
 const makeOptions2 = (method,body) =>{
