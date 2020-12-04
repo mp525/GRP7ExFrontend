@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import Stories from './Stories.jpg';
+import Navbar from "./Navbar";
 
 import {
   BrowserRouter as Router,
@@ -64,14 +65,15 @@ function App() {
 
   return (
     <div>
-      <Header loginMsg={loggedIn ? "Logout" : "Login"} loggedIn={loggedIn} />
+      {/* <Header loginMsg={loggedIn ? "Logout" : "Login"} loggedIn={loggedIn} /> */}
+      <Navbar loggedIn={loggedIn} loginMsg={loggedIn ? "Logout" : "Login"}/>
       <Switch>
         <Route exact path="/">
           <FrontPage/>
           <Footer/>
         </Route>
         <Route path="/page1">
-          <FetchDefault />
+          <Placeholder />
           <Footer/>
         </Route>
         

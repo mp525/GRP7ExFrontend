@@ -2,11 +2,18 @@ import React, { useEffect, useState } from "react";
 import Stories from "./Stories.jpg";
 import "./App.css";
 import { Container, Row, Col, Card } from "react-bootstrap";
+
+const containerStyle = {
+  width: "900px"
+};
+
 function UserPage({ facade }) {
   const [errorUser, setErrorUser] = useState("");
   const [dataFromServer, setDataFromServer] = useState("");
   const [bookReview, setBookReview] = useState({});
   const [filmReview, setFilmReview] = useState({});
+
+  
 
   useEffect(() => {
     facade
@@ -54,7 +61,7 @@ function UserPage({ facade }) {
           <img src={Stories} alt="books" className="pic" />
           {facade.isAdmin().indexOf("user") !== -1 && (
             <>
-            
+            <Container style={containerStyle}>
             <Card border="dark" style={{ backgroundColor: "#fdbc68" }}>
               <Card.Title>Review a book:</Card.Title>
                 <Card.Body>
@@ -106,12 +113,14 @@ function UserPage({ facade }) {
               </form>
               </Card.Body>
               </Card>
+              </Container>
             </>
           )}
           <p>{errorUser}</p>
 
           {facade.isAdmin().indexOf("user") !== -1 && (
             <>
+            <Container style={containerStyle}>
             <Card border="dark" style={{ backgroundColor: "#fdbc68" }}>
               <Card.Title>Review a film:</Card.Title>
               <Card.Body>
@@ -152,6 +161,7 @@ function UserPage({ facade }) {
                 </form>
               </Card.Body>
             </Card>
+            </Container>
             </>
           )}
 
