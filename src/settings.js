@@ -14,6 +14,7 @@ const review="/api/film/review/";
 const addBookReview = "/api/books/add";
 const addFilmReview = "/api/film/add";
 const deleteBookReview = "/api/books/delete/";
+const editBookReview = "/api/books/edit";
 export {
     mainURL,
     userInfoEndpoint,
@@ -27,5 +28,6 @@ export {
     addBookReview,
     addFilmReview,
     userReviewsB,
-    deleteBookReview
+    deleteBookReview,
+    editBookReview
 };
