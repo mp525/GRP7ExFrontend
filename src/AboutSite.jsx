@@ -29,6 +29,7 @@ function AboutSite() {
           <br />
           <br />
           <br />
+          <h1>About us</h1>
           <div align="center">
             <div class="row">
             <div class="column col-3">

@@ -5,13 +5,16 @@ import {
     defaultEndpoint,
     loginEndpoint,
     registerEndpoint,
-  books,review,
-  bookReviews,
-  addBookReview,
-  addFilmReview,
-  userReviewsB,
-  deleteBookReview,
-  editBookReview
+    books,review,
+    bookReviews,
+    addBookReview,
+    addFilmReview,
+    userReviewsB,
+    deleteBookReview,
+    editBookReview,
+    userReviewsF,
+    editFilmReview,
+    
 
 } from "./settings";
 
@@ -120,7 +123,14 @@ const fetchDataAdmin = () => {
     return fetch(mainURL + editBookReview, options)
     .then(handleHttpErrors);
   }
-  
+  const editFilmRev = (body) => {
+    
+    const options = makeOptions("PUT", true, body);
+    console.log(mainURL + editFilmReview, options);
+    return fetch(mainURL + editFilmReview, options)
+    
+    .then(handleHttpErrors);
+  }
   const addBookRev = (bookReview) =>{
     const options = makeOptions("POST", true, bookReview);
     return fetch(mainURL + addBookReview, options)
@@ -154,7 +164,17 @@ const fetchDataAdmin = () => {
         callback2(data.bookDTOs);
       });
   };
-
+  const fetchFilmReviewsA = (callback, callback2, title) => {
+    const options = makeOptions("GET", true);
+    console.log(mainURL + userReviewsF, title, options);
+    return fetch(mainURL + userReviewsF + title, options)
+      .then(handleHttpErrors)
+      .then((data) => {
+        console.log(data)
+        callback(data);
+        callback2(data);
+      });
+  };
   const fetchReviews = (callback, title) => {
     const options = makeOptions("GET", true);
     return fetch(mainURL + review + title, options)
@@ -212,7 +232,8 @@ const fetchDataAdmin = () => {
     fetchBookReviewsA,
     deleteBookRev,
     fetchTopStories,
-    editBookRev
+    editBookRev,
+    fetchFilmReviewsA,editFilmRev
   };
 }
 const facade = apiFacade();

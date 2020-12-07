@@ -10,11 +10,13 @@ const registerEndpoint = "/api/info";
 const books = "/api/books/reviewsOld/";
 const bookReviews = "/api/books/reviews/";
 const userReviewsB = "/api/books/reviewsA/";
+const userReviewsF = "/api/film/reviewU/";
 const review="/api/film/review/";
 const addBookReview = "/api/books/add";
 const addFilmReview = "/api/film/add";
 const deleteBookReview = "/api/books/delete/";
 const editBookReview = "/api/books/edit";
+const editFilmReview = "/api/film/edit";
 export {
     mainURL,
     userInfoEndpoint,
@@ -29,5 +31,7 @@ export {
     addFilmReview,
     userReviewsB,
     deleteBookReview,
-    editBookReview
+    editBookReview,
+    userReviewsF,
+    editFilmReview
 };

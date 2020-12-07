@@ -3,6 +3,7 @@ import Admin from "./admin.jpg";
 import "./App.css";
 import facade from "./apiFacade";
 import AdminBooks from "./AdminBooks";
+import AdminFilm from "./AdminFilm";
 import { Container, Row, Col, Card } from "react-bootstrap";
 
 
@@ -30,6 +31,7 @@ function AdminPage() {
           
           <img src={Admin} alt="books" className="pic" />
           <AdminBooks/>
+          <AdminFilm/>
           <p>{errorAdmin}</p>
           <br />
           <br />
