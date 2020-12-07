@@ -23,6 +23,7 @@ import Iframe from 'react-iframe';
 import AdminPage from './AdminPage';
 import Footer from './Footer';
 import UserPage from './UserPage';
+import Topstories from './Topstories';
 
 import AboutSite from './AboutSite';
 
@@ -77,7 +78,11 @@ function App() {
           <AboutSite />
           <Footer/>
         </Route>
-        
+        <Route path="/top">
+          {/* Top Stories */}
+          <Topstories facade={facade}/>
+          <Footer/>
+        </Route>
         <Route path="/page3">
           {/* <User /> */}
           <UserPage1/>
@@ -160,6 +165,11 @@ function Header({ loggedIn, loginMsg }) {
       
       {loggedIn && (
         <>
+          <li>
+            <NavLink activeClassName="active" to="/top">
+              Top Stories
+            </NavLink>
+          </li>
           <li>
             <NavLink activeClassName="active" to="/page3">
               Reviews
