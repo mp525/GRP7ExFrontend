@@ -157,6 +157,18 @@ const fetchDataAdmin = () => {
       });
   };
 
+  const fetchTopStories = (callback, title) => {
+    const options = makeOptions2("GET");
+    const url = "https://api.nytimes.com/svc/topstories/v2/";
+    const theme = title + ".json";
+    const key = "?api-key=5tN35qLGRRkvgYSCFj7wKdwhDNb5PMOF";
+    return fetch(url+theme+key, options)
+    .then(handleHttpErrors)
+    .then((data) => {
+      callback(data.results);
+    })
+  };
+
   const makeOptions = (method, addToken, body) => {
     var opts = {
       method: method,
@@ -191,7 +203,8 @@ const fetchDataAdmin = () => {
     isAdmin,
     addFilmRev,
     fetchBookReviewsA,
-    deleteBookRev
+    deleteBookRev,
+    fetchTopStories
   };
 }
 const facade = apiFacade();
