@@ -40,6 +40,11 @@ function Navbar({loggedIn, loginMsg}) {
       {loggedIn && (
         <>
           <li>
+            <NavLink activeClassName="active" to="/top" className="nav-text">
+              <span>Top Stories</span>
+            </NavLink>
+          </li>
+          <li>
             <NavLink activeClassName="active" to="/page3" className="nav-text">
             <span>Reviews</span>
             </NavLink>
