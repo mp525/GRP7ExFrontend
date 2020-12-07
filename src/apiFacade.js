@@ -10,7 +10,8 @@ import {
   addBookReview,
   addFilmReview,
   userReviewsB,
-  deleteBookReview
+  deleteBookReview,
+  editBookReview
 
 } from "./settings";
 
@@ -113,6 +114,12 @@ const fetchDataAdmin = () => {
       callback(data);
     })
   }
+
+  const editBookRev = (body) => {
+    const options = makeOptions("PUT", true, body);
+    return fetch(mainURL + editBookReview, options)
+    .then(handleHttpErrors);
+  }
   
   const addBookRev = (bookReview) =>{
     const options = makeOptions("POST", true, bookReview);
@@ -191,7 +198,8 @@ const fetchDataAdmin = () => {
     isAdmin,
     addFilmRev,
     fetchBookReviewsA,
-    deleteBookRev
+    deleteBookRev,
+    editBookRev
   };
 }
 const facade = apiFacade();
