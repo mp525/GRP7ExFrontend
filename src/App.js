@@ -24,6 +24,7 @@ import AdminPage from './AdminPage';
 import Footer from './Footer';
 import UserPage from './UserPage';
 
+import AboutSite from './AboutSite';
 
 function App() {
   const [errorMes, setErrorMes] = useState("");
@@ -73,7 +74,7 @@ function App() {
           <Footer/>
         </Route>
         <Route path="/page1">
-          <Placeholder />
+          <AboutSite />
           <Footer/>
         </Route>
         
