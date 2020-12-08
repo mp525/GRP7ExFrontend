@@ -16,6 +16,8 @@ import {
   userReviewsF,
   editFilmReview,
   deleteFilmReview,
+  getUsers,
+  deleteUser
 } from "./settings";
 
 function handleHttpErrors(res) {
@@ -132,6 +134,15 @@ function apiFacade() {
       });
   };
 
+
+  const deleteUsers = (username) => {
+    //const user = {username: username};
+    const options = makeOptions("DELETE", true);
+    return fetch(mainURL + deleteUser + username, options)
+    .then(handleHttpErrors);
+
+  }
+
   const editBookRev = (body) => {
     const options = makeOptions("PUT", true, body);
     return fetch(mainURL + editBookReview, options).then(handleHttpErrors);
@@ -161,6 +172,16 @@ function apiFacade() {
         callback2(data.bookDTOs);
       });
   };
+
+  const getAllUsers = (callback) => {
+    const options = makeOptions("GET", true);
+    return fetch(mainURL + getUsers, options)
+    .then(handleHttpErrors)
+    .then((data) => {
+      callback(data);
+    })
+
+  }
 
   const fetchBookReviewsA = (callback, callback2, title) => {
     const options = makeOptions("GET", true);
@@ -244,6 +265,8 @@ function apiFacade() {
     fetchFilmReviewsA,
     editFilmRev,
     deleteFilmRev,
+    getAllUsers,
+    deleteUsers
   };
 }
 const facade = apiFacade();
