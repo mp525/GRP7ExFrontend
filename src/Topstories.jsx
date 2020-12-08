@@ -34,7 +34,16 @@ function Topstories({ facade }) {
                   Arts
                 </button>
                 <button onClick={submit} className="myButton" id="home">
-                    Home
+                  Home
+                </button>
+                <button onClick={submit} className="myButton" id="science">
+                  Science
+                </button>
+                <button onClick={submit} className="myButton" id="technology">
+                  Technology
+                </button>
+                <button onClick={submit} className="myButton" id="world">
+                  World
                 </button>
                 <br />
                 <br />
