@@ -12,7 +12,7 @@ const containerStyle = {
 
 const DeleteUser = () => {
     const [users, setUsers] = useState([]);
-  
+   
     useEffect(() => {
       getUsers();
     }, []);
@@ -27,7 +27,10 @@ const DeleteUser = () => {
       console.log(username);
       facade.deleteUsers(username);
       getUsers();
-  
+      setTimeout(() => {
+        alert("User " + username + " was removed from the system!")
+      }, 500);
+      
     };
 
     const getUsers = ()=>{

@@ -6,6 +6,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 const EditFilm = ({ editID, film, submitTitle }) => {
   const [filmToEdit, setFilmToEdit] = useState({});
   const [isEditing, setIsEditing] = useState(false);
+  const [filmSucces, setFilmSucces] = useState({});
 
   useEffect(() => {
     const single = film.filter((rev) => {
@@ -31,10 +32,11 @@ const EditFilm = ({ editID, film, submitTitle }) => {
 
   const submitChange = () => {
     setIsEditing(false);
-    facade.editFilmRev(filmToEdit);
+    facade.editFilmRev(filmToEdit, setFilmSucces);
     setTimeout(() => {
+      submitTitle();
   }, 500);
-    submitTitle();
+  
   };
 
   return (
@@ -65,6 +67,11 @@ const EditFilm = ({ editID, film, submitTitle }) => {
           )}
         </>
       )}
+      {filmSucces.display_title && (
+                      <>
+                        <p style={{color:"white", backgroundColor:"orange"}}>Review for film "{filmSucces.display_title}" was edited!</p>
+                      </>
+                    )}
     </>
   );
 };

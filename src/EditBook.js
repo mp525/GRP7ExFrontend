@@ -6,6 +6,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 const EditBook = ({ editID, books, submitTitle }) => {
   const [bookToEdit, setBookToEdit] = useState({});
   const [isEditing, setIsEditing] = useState(false);
+  const [bookSucces, setBookSucces] = useState({});
 
   useEffect(() => {
     const single = books.filter((rev) => {
@@ -21,6 +22,10 @@ const EditBook = ({ editID, books, submitTitle }) => {
     
   }, [])
 
+  useEffect(()=>{
+    
+  }, [bookToEdit])
+
   const handleChange = (event) => {
     const target = event.target;
     const property = target.id;
@@ -31,7 +36,9 @@ const EditBook = ({ editID, books, submitTitle }) => {
 
   const submitChange = () => {
     setIsEditing(false);
-    facade.editBookRev(bookToEdit);
+    facade.editBookRev(bookToEdit, setBookSucces);
+    /* const tmpBook = {...bookToEdit, ["summary"]: ""}
+    setBookToEdit({...tmpBook}); */
     submitTitle();
   };
 
@@ -58,10 +65,17 @@ const EditBook = ({ editID, books, submitTitle }) => {
                 <Button onClick={submitChange}>Submit change</Button>
               </form>
               <br />
+              
             </Card>
           )}
         </>
       )}
+      {bookSucces.book_title && (
+                      <>
+                      
+                      <p style={{color:"white", backgroundColor:"orange"}}>Review by "{bookSucces.byline}" was edited!</p>
+                      </>
+                    )}
     </>
   );
 };

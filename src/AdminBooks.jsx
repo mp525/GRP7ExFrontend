@@ -17,11 +17,12 @@ function AdminBooks() {
   const submitTitle = () => {
     facade.fetchBookReviewsA(setReviews, setBooks, title);
   };
-
+ 
   const editTODO = (e) => {
     e.preventDefault();
     const target = e.target;
     setEditID(target.id);
+    setDelDTO({byline:""})
   };
 
   const handleChange = (event) => {
@@ -36,6 +37,7 @@ function AdminBooks() {
     const id = e.target.id;
     facade.deleteBookRev(id, setDelDTO);
     submitTitle();
+    
   };
 
   return (
@@ -90,10 +92,16 @@ function AdminBooks() {
                                   delete
                                 </a>
                               </td>
+                              
                             </tr>
                           );
                         }
                       })}
+                      {delDTO.byline && (
+                                <>
+                                <p style={{color:"white", backgroundColor:"red"}}>Deleted!</p>
+                                </>
+                              )}
                     </tbody>
                   </table>
                 </Card.Body>

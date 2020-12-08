@@ -143,23 +143,35 @@ function apiFacade() {
 
   }
 
-  const editBookRev = (body) => {
+  const editBookRev = (body, callback) => {
     const options = makeOptions("PUT", true, body);
-    return fetch(mainURL + editBookReview, options).then(handleHttpErrors);
+    return fetch(mainURL + editBookReview, options).then(handleHttpErrors)
+    .then(data=>{
+      callback(data);
+    })
   };
-  const editFilmRev = (body) => {
+  const editFilmRev = (body, callback) => {
     const options = makeOptions("PUT", true, body);
     console.log(mainURL + editFilmReview, options);
-    return fetch(mainURL + editFilmReview, options).then(handleHttpErrors);
+    return fetch(mainURL + editFilmReview, options).then(handleHttpErrors)
+    .then(data=>{
+      callback(data);
+    })
   };
-  const addBookRev = (bookReview) => {
+  const addBookRev = (bookReview, callback) => {
     const options = makeOptions("POST", true, bookReview);
-    return fetch(mainURL + addBookReview, options).then(handleHttpErrors);
+    return fetch(mainURL + addBookReview, options).then(handleHttpErrors)
+    .then(data=>{
+        callback(data);
+    });
   };
 
-  const addFilmRev = (filmReview) => {
+  const addFilmRev = (filmReview, callback) => {
     const options = makeOptions("POST", true, filmReview);
-    return fetch(mainURL + addFilmReview, options).then(handleHttpErrors);
+    return fetch(mainURL + addFilmReview, options).then(handleHttpErrors)
+    .then(data=>{
+      callback(data);
+    })
   };
 
   const fetchBookReviews = (callback, callback2, title) => {
