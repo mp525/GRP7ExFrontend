@@ -14,6 +14,11 @@ function AdminFilm() {
   const [editID, setEditID] = useState(0);
   const [delDTO, setDelDTO] = useState({});
 
+  useEffect(()=>{
+    //submitTitle();
+  }, [delDTO])
+  
+
   const submitTitle = () => {
     facade.fetchFilmReviewsA(setReviews, setFilm, title);
   };
@@ -22,8 +27,8 @@ function AdminFilm() {
     e.preventDefault();
     const target = e.target;
     setEditID(target.id);
-
-  };
+    setDelDTO({headline:""})
+  }; 
 
   const handleChange = (event) => {
     const target = event.target;
@@ -36,7 +41,10 @@ function AdminFilm() {
     e.preventDefault();
     const id = e.target.id;
     facade.deleteFilmRev(id, setDelDTO);
-    submitTitle();
+    setTimeout(() => {
+      submitTitle();
+    }, 800);
+    
   };
 
 
@@ -105,6 +113,11 @@ function AdminFilm() {
                           );
                         }
                       })}
+                      {delDTO.headline && (
+                                <>
+                                <p style={{color:"white", backgroundColor:"red"}}>Deleted!</p>
+                                </>
+                              )}
                     </tbody>
                   </table>
                 </Card.Body>

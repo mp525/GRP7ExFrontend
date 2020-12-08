@@ -7,6 +7,8 @@ const containerStyle = {
   };
 function BookWrite({ facade }) {
     const [bookReview, setBookReview] = useState({});
+    const [bookSucces, setBookSucces] = useState({});
+
     const handleChange = (evt) => {
         const target = evt.target;
         const value = target.value;
@@ -20,7 +22,8 @@ function BookWrite({ facade }) {
       const handleSubmit = (evt) => {
         evt.preventDefault();
         console.log(bookReview);
-        facade.addBookRev(bookReview);
+        facade.addBookRev(bookReview, setBookSucces);
+        /* setBookReview({book_title: "", book_author:"", summary:"", byline: ""}); */
       };
 
   return (
@@ -56,7 +59,8 @@ function BookWrite({ facade }) {
                       className="i1"
                       onChange={handleChange}
                     />
-                  </div>
+                  </div> 
+                  
                   <div>
                     <h6>Review</h6>
                     <textarea
@@ -73,8 +77,15 @@ function BookWrite({ facade }) {
                     <button className="myButton" onClick={handleSubmit}>
                       Send review
                     </button>
+                    <br/>
+                    <br/>
+                    {bookSucces.book_title && (
+                      <>
+                      <p style={{color:"white", backgroundColor:"green"}}>Review for book "{bookSucces.book_title}" was sent!</p>
+                      </>
+                    )}
                   </div>
-                  {/* <p>{bookReview.title} {bookReview.book_author} {bookReview.byline} {bookReview.summary}</p> */}
+                  
                 </div>
               </form>
               </Card.Body>
