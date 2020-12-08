@@ -32,6 +32,7 @@ function AdminBooks() {
   };
 
   const deleteReview = (e) => {
+    e.preventDefault();
     const id = e.target.id;
     facade.deleteBookRev(id, setDelDTO);
     submitTitle();
@@ -45,7 +46,7 @@ function AdminBooks() {
             <Container style={containerStyle}>
               <Card border="dark" style={{ backgroundColor: "#f0EAD6" }}>
                 <Card.Body>
-                  <h4>Book reviews to delete</h4>
+                  <h4>Book reviews</h4>
                   <input
                     type="text"
                     id="title"
@@ -57,10 +58,6 @@ function AdminBooks() {
                   </button>
                   <br />
                   <h4>User reviews:</h4>
-                  <p>
-                    {delDTO.byline} {delDTO.book_title} {delDTO.book_author}{" "}
-                    {delDTO.summary}
-                  </p>
                   <table className="table">
                     <thead>
                       <tr>

@@ -12,6 +12,7 @@ function AdminFilm() {
   const [reviews, setReviews] = useState({});
   const [film, setFilm] = useState([]);
   const [editID, setEditID] = useState(0);
+  const [delDTO, setDelDTO] = useState({});
 
   const submitTitle = () => {
     facade.fetchFilmReviewsA(setReviews, setFilm, title);
@@ -21,7 +22,7 @@ function AdminFilm() {
     e.preventDefault();
     const target = e.target;
     setEditID(target.id);
-    console.log(reviews);
+
   };
 
   const handleChange = (event) => {
@@ -29,7 +30,13 @@ function AdminFilm() {
     const property = target.id;
     const value = target.value;
     setTitle(value);
-    console.log(reviews);
+  };
+
+  const deleteReview = (e) => {
+    e.preventDefault();
+    const id = e.target.id;
+    facade.deleteFilmRev(id, setDelDTO);
+    submitTitle();
   };
 
 
@@ -37,14 +44,14 @@ function AdminFilm() {
   return (
     <>
       <div>
-        {console.log(reviews)}
+        
         
         {facade.isAdmin().indexOf("admin") !== -1 && (
           <>
             <Container style={containerStyle}>
               <Card border="dark" style={{ backgroundColor: "#f0EAD6" }}>
                 <Card.Body>
-                  <h4>Film reviews to delete</h4>
+                  <h4>Film reviews</h4>
                   <input
                     type="text"
                     id="title"
@@ -75,7 +82,7 @@ function AdminFilm() {
                     </thead>
 
                     <tbody>
-                      {console.log(film)}
+                      
                       {film.map((x) => {
                         if (x.id !== 0) {
                           return (
@@ -90,9 +97,9 @@ function AdminFilm() {
                                   edit
                                 </a>{" "}
                                 /{" "}
-                                {/* <a href="#" id={x.id} onClick={deleteReview}>
+                                <a href="#" id={x.id} onClick={deleteReview}>
                                   delete
-                                </a> */}
+                                </a>
                               </td>
                             </tr>
                           );

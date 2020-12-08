@@ -15,6 +15,7 @@ const review="/api/film/review/";
 const addBookReview = "/api/books/add";
 const addFilmReview = "/api/film/add";
 const deleteBookReview = "/api/books/delete/";
+const deleteFilmReview = "/api/film/delete/";
 const editBookReview = "/api/books/edit";
 const editFilmReview = "/api/film/edit";
 export {
@@ -33,5 +34,6 @@ export {
     deleteBookReview,
     editBookReview,
     userReviewsF,
-    editFilmReview
+    editFilmReview,
+    deleteFilmReview
 };

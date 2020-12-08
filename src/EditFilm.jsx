@@ -26,14 +26,14 @@ const EditFilm = ({ editID, film, submitTitle }) => {
     const property = target.id;
     const value = target.value;
     const tmpFilm = { ...filmToEdit, [property]: value };
-    console.log(tmpFilm);
     setFilmToEdit({ ...tmpFilm });
   };
 
   const submitChange = () => {
-    console.log(filmToEdit.summary_short);
     setIsEditing(false);
     facade.editFilmRev(filmToEdit);
+    setTimeout(() => {
+  }, 500);
     submitTitle();
   };
 
@@ -41,7 +41,7 @@ const EditFilm = ({ editID, film, submitTitle }) => {
     <>
       {isEditing && (
         <>
-        {console.log(filmToEdit)}
+       
           {editID !== 0 && (
             <Card border="dark" style={{ backgroundColor: "#f0EAD6" }}>
               <h3>Edit film review: </h3>

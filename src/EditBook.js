@@ -30,7 +30,6 @@ const EditBook = ({ editID, books, submitTitle }) => {
   };
 
   const submitChange = () => {
-    console.log(bookToEdit.summary);
     setIsEditing(false);
     facade.editBookRev(bookToEdit);
     submitTitle();

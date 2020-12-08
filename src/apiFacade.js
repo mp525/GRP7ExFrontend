@@ -1,21 +1,21 @@
 import {
-    mainURL,
-    userInfoEndpoint,
-    adminInfoEndpoint,
-    defaultEndpoint,
-    loginEndpoint,
-    registerEndpoint,
-    books,review,
-    bookReviews,
-    addBookReview,
-    addFilmReview,
-    userReviewsB,
-    deleteBookReview,
-    editBookReview,
-    userReviewsF,
-    editFilmReview,
-    
-
+  mainURL,
+  userInfoEndpoint,
+  adminInfoEndpoint,
+  defaultEndpoint,
+  loginEndpoint,
+  registerEndpoint,
+  books,
+  review,
+  bookReviews,
+  addBookReview,
+  addFilmReview,
+  userReviewsB,
+  deleteBookReview,
+  editBookReview,
+  userReviewsF,
+  editFilmReview,
+  deleteFilmReview,
 } from "./settings";
 
 function handleHttpErrors(res) {
@@ -49,39 +49,44 @@ function apiFacade() {
     });
     return fetch(mainURL + loginEndpoint, options)
       .then(handleHttpErrors)
-      .then(res => {setToken(res.token) })
-      
-      
-}
-const register = (username, password) => {
-  const options = makeOptions2("POST", {username: username, password: password});
-  return fetch(mainURL + registerEndpoint, options)
-  .then(handleHttpErrors)
-  .then(res => {setToken(res.token)})
-}
+      .then((res) => {
+        setToken(res.token);
+      });
+  };
+  const register = (username, password) => {
+    const options = makeOptions2("POST", {
+      username: username,
+      password: password,
+    });
+    return fetch(mainURL + registerEndpoint, options)
+      .then(handleHttpErrors)
+      .then((res) => {
+        setToken(res.token);
+      });
+  };
 
-const makeOptions2 = (method,body) =>{
-  var opts = {
-    method: method,
-    headers: {
-      "Content-type": "application/json",
-      'Accept': 'application/json',
+  const makeOptions2 = (method, body) => {
+    var opts = {
+      method: method,
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+    };
+    if (body) {
+      opts.body = JSON.stringify(body);
     }
-  }
-  if (body) {
-    opts.body = JSON.stringify(body);
-  }
-  return opts;
-}
+    return opts;
+  };
 
-const fetchDataUser = () => {
-    const options = makeOptions("GET",true); //True add's the token
-   return fetch(mainURL + userInfoEndpoint, options).then(handleHttpErrors);
-}
-const fetchDataAdmin = () => {
-    const options = makeOptions("GET",true); //True add's the token
-   return fetch(mainURL + adminInfoEndpoint, options).then(handleHttpErrors);
-}
+  const fetchDataUser = () => {
+    const options = makeOptions("GET", true); //True add's the token
+    return fetch(mainURL + userInfoEndpoint, options).then(handleHttpErrors);
+  };
+  const fetchDataAdmin = () => {
+    const options = makeOptions("GET", true); //True add's the token
+    return fetch(mainURL + adminInfoEndpoint, options).then(handleHttpErrors);
+  };
 
   const isAdmin = () => {
     const jwtData = getToken().split(".")[1];
@@ -89,7 +94,7 @@ const fetchDataAdmin = () => {
     const decodedJwtData = JSON.parse(decodedJwtJsonData);
     const isAdmin = decodedJwtData.roles;
     return isAdmin;
-  }
+  };
 
   const fetchDefault = (callback) => {
     const options = makeOptions("GET");
@@ -112,36 +117,39 @@ const fetchDataAdmin = () => {
   const deleteBookRev = (id, callback) => {
     const options = makeOptions("DELETE", true);
     return fetch(mainURL + deleteBookReview + id, options)
-    .then(handleHttpErrors)
-    .then((data) =>{
-      callback(data);
-    })
-  }
+      .then(handleHttpErrors)
+      .then((data) => {
+        callback(data);
+      });
+  };
+
+  const deleteFilmRev = (id, callback) => {
+    const options = makeOptions("DELETE", true);
+    return fetch(mainURL + deleteFilmReview + id, options)
+      .then(handleHttpErrors)
+      .then((data) => {
+        callback(data);
+      });
+  };
 
   const editBookRev = (body) => {
     const options = makeOptions("PUT", true, body);
-    return fetch(mainURL + editBookReview, options)
-    .then(handleHttpErrors);
-  }
+    return fetch(mainURL + editBookReview, options).then(handleHttpErrors);
+  };
   const editFilmRev = (body) => {
-    
     const options = makeOptions("PUT", true, body);
     console.log(mainURL + editFilmReview, options);
-    return fetch(mainURL + editFilmReview, options)
-    
-    .then(handleHttpErrors);
-  }
-  const addBookRev = (bookReview) =>{
+    return fetch(mainURL + editFilmReview, options).then(handleHttpErrors);
+  };
+  const addBookRev = (bookReview) => {
     const options = makeOptions("POST", true, bookReview);
-    return fetch(mainURL + addBookReview, options)
-    .then(handleHttpErrors);
-  }
+    return fetch(mainURL + addBookReview, options).then(handleHttpErrors);
+  };
 
   const addFilmRev = (filmReview) => {
     const options = makeOptions("POST", true, filmReview);
-    return fetch(mainURL + addFilmReview, options)
-    .then(handleHttpErrors);
-  }
+    return fetch(mainURL + addFilmReview, options).then(handleHttpErrors);
+  };
 
   const fetchBookReviews = (callback, callback2, title) => {
     const options = makeOptions("GET", true);
@@ -170,7 +178,7 @@ const fetchDataAdmin = () => {
     return fetch(mainURL + userReviewsF + title, options)
       .then(handleHttpErrors)
       .then((data) => {
-        console.log(data)
+        console.log(data);
         callback(data);
         callback2(data);
       });
@@ -189,11 +197,11 @@ const fetchDataAdmin = () => {
     const url = "https://api.nytimes.com/svc/topstories/v2/";
     const theme = title + ".json";
     const key = "?api-key=5tN35qLGRRkvgYSCFj7wKdwhDNb5PMOF";
-    return fetch(url+theme+key, options)
-    .then(handleHttpErrors)
-    .then((data) => {
-      callback(data.results);
-    })
+    return fetch(url + theme + key, options)
+      .then(handleHttpErrors)
+      .then((data) => {
+        callback(data.results);
+      });
   };
 
   const makeOptions = (method, addToken, body) => {
@@ -233,7 +241,9 @@ const fetchDataAdmin = () => {
     deleteBookRev,
     fetchTopStories,
     editBookRev,
-    fetchFilmReviewsA,editFilmRev
+    fetchFilmReviewsA,
+    editFilmRev,
+    deleteFilmRev,
   };
 }
 const facade = apiFacade();
