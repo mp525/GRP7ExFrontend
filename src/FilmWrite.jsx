@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Container, Card } from "react-bootstrap";
+
 const containerStyle = {
   width: "30%",
 };
+
 function FilmWrite({ facade }) {
   const [dataFromServer, setDataFromServer] = useState("");
   const [filmSucces, setFilmSucces] = useState({});
@@ -20,9 +22,9 @@ function FilmWrite({ facade }) {
 
   const handleSubmitFilm = (evt) => {
     evt.preventDefault();
-    console.log(filmReview);
     facade.addFilmRev(filmReview, setFilmSucces);
   };
+
   return (
     <>
       {facade.isAdmin().indexOf("user") !== -1 && (
@@ -62,11 +64,13 @@ function FilmWrite({ facade }) {
                     <button className="myButton" onClick={handleSubmitFilm}>
                       Send Film Review
                     </button>
-                    <br/>
+                    <br />
                     <br />
                     {filmSucces.display_title && (
                       <>
-                        <p style={{color:"white", backgroundColor:"green"}}>Review for film "{filmSucces.display_title}" was sent!</p>
+                        <p style={{ color: "white", backgroundColor: "green" }}>
+                          Review for film "{filmSucces.display_title}" was sent!
+                        </p>
                       </>
                     )}
                     <br />

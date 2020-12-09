@@ -7,6 +7,7 @@ import EditBook from "./EditBook";
 const containerStyle = {
   width: "58.7%",
 };
+
 function AdminBooks() {
   const [title, setTitle] = useState("");
   const [reviews, setReviews] = useState({});
@@ -17,12 +18,12 @@ function AdminBooks() {
   const submitTitle = () => {
     facade.fetchBookReviewsA(setReviews, setBooks, title);
   };
- 
+
   const editTODO = (e) => {
     e.preventDefault();
     const target = e.target;
     setEditID(target.id);
-    setDelDTO({byline:""})
+    setDelDTO({ byline: "" });
   };
 
   const handleChange = (event) => {
@@ -37,7 +38,6 @@ function AdminBooks() {
     const id = e.target.id;
     facade.deleteBookRev(id, setDelDTO);
     submitTitle();
-    
   };
 
   return (
@@ -92,21 +92,26 @@ function AdminBooks() {
                                   delete
                                 </a>
                               </td>
-                              
                             </tr>
                           );
                         }
                       })}
                       {delDTO.byline && (
-                                <>
-                                <p style={{color:"white", backgroundColor:"red"}}>Deleted!</p>
-                                </>
-                              )}
+                        <>
+                          <p style={{ color: "white", backgroundColor: "red" }}>
+                            Deleted!
+                          </p>
+                        </>
+                      )}
                     </tbody>
                   </table>
                 </Card.Body>
               </Card>
-              <EditBook editID={editID} books={books} submitTitle={submitTitle} />
+              <EditBook
+                editID={editID}
+                books={books}
+                submitTitle={submitTitle}
+              />
             </Container>
           </>
         )}
@@ -114,6 +119,5 @@ function AdminBooks() {
     </>
   );
 }
-
 
 export default AdminBooks;

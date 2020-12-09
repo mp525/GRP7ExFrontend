@@ -1,8 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import Stories from './Stories.jpg';
 import Navbar from "./Navbar";
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,20 +9,16 @@ import {
   useLocation,
   useHistory,
 } from "react-router-dom";
-import { Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Login from "./Login";
 import facade from "./apiFacade";
 import LoggedIn from "./LoggedIn";
 import LoginForm from "./loginForm";
 import UserPage1 from "./UserPage1";
 import FrontPage from "./Frontpage";
-import Iframe from 'react-iframe';
 import AdminPage from './AdminPage';
 import Footer from './Footer';
 import UserPage from './UserPage';
 import Topstories from './Topstories';
-
 import AboutSite from './AboutSite';
 
 function App() {
@@ -52,17 +46,6 @@ function App() {
     facade
     .register(user, pass)
     .then((res) => setLoggedIn(true))
-    // .then((data) => setDataFromServer(data.msg))
-    /* .catch((err) => {
-      err.fullError.then((err) => {
-        setErrorMes(err.message);
-      });
-    }); */
-  };
-
-  const setLoginStatus = (status) => {
-    setLoggedIn(status);
-    history.push("/");
   };
 
   return (
@@ -119,32 +102,6 @@ function App() {
           <NoMatch />
         </Route>
       </Switch>
-    </div>
-  );
-}
-{
-  /* <Login
-            loginMsg={loggedIn ? "Logout" : "Login"}
-            loggedIn={loggedIn}
-            setLoginStatus={setLoginStatus}
-          /> */
-}
-
-function FetchDefault() {
-  const [array, setArray] = useState([]);
-
-  useEffect(() => {
-    facade.fetchDefault(setArray);
-  }, []);
-
-  return (
-    <div>
-      <h3>Data fetched from api:</h3>
-      <ul>
-        {array.map((data) => {
-          return <li>{data}</li>;
-        })}
-      </ul>
     </div>
   );
 }
@@ -207,51 +164,6 @@ function NoMatch() {
 
 function Placeholder() {
   return <h3>TODO</h3>;
-}
-
-function User() {
-  const [errorUser, setErrorUser] = useState("");
-  const [dataFromServer, setDataFromServer] = useState("Error");
-  useEffect(() => {
-    facade
-      .fetchDataUser()
-      .then((data) => setDataFromServer(data.msg))
-      .catch((err) => {
-        err.fullError.then((err) => {
-          setErrorUser(err.message);
-        });
-      });
-  }, []);
-
-  return (
-    <div>
-      <h3>{dataFromServer}</h3>
-      <p>{errorUser}</p>
-    </div>
-  );
-}
-
-function Admin() {
-  const [errorAdmin, setErrorAdmin] = useState("");
-  const [dataFromServer, setDataFromServer] = useState("Error!");
-
-  useEffect(() => {
-    facade
-      .fetchDataAdmin()
-      .then((data) => setDataFromServer(data.msg))
-      .catch((err) => {
-        err.fullError.then((err) => {
-          setErrorAdmin(err.message);
-        });
-      });
-  }, []);
-
-  return (
-    <div>
-      <h3>{dataFromServer}</h3>
-      <p>{errorAdmin}</p>
-    </div>
-  );
 }
 
 export default App;

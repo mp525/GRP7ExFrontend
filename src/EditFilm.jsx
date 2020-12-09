@@ -17,10 +17,7 @@ const EditFilm = ({ editID, film, submitTitle }) => {
     setIsEditing(true);
   }, [editID]);
 
-
-  useEffect(()=>{
-    
-  }, [])
+  useEffect(() => {}, []);
 
   const handleChange = (event) => {
     const target = event.target;
@@ -35,15 +32,13 @@ const EditFilm = ({ editID, film, submitTitle }) => {
     facade.editFilmRev(filmToEdit, setFilmSucces);
     setTimeout(() => {
       submitTitle();
-  }, 500);
-  
+    }, 500);
   };
 
   return (
     <>
       {isEditing && (
         <>
-       
           {editID !== 0 && (
             <Card border="dark" style={{ backgroundColor: "#f0EAD6" }}>
               <h3>Edit film review: </h3>
@@ -68,10 +63,12 @@ const EditFilm = ({ editID, film, submitTitle }) => {
         </>
       )}
       {filmSucces.display_title && (
-                      <>
-                        <p style={{color:"white", backgroundColor:"orange"}}>Review for film "{filmSucces.display_title}" was edited!</p>
-                      </>
-                    )}
+        <>
+          <p style={{ color: "white", backgroundColor: "orange" }}>
+            Review for film "{filmSucces.display_title}" was edited!
+          </p>
+        </>
+      )}
     </>
   );
 };

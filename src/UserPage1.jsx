@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Books from "./Books.jpg";
+import Books from "./pictures/Books.jpg";
 import "./App.css";
 import api from "./apiFacade";
 import ReviewWidget from "./ReviewWidget";
-import Iframe from "react-iframe";
 import facade from "./apiFacade";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 function UserPage1() {
   const [reviews, setReviews] = useState({});
@@ -30,28 +29,24 @@ function UserPage1() {
 
   const handleChange = (event) => {
     const target = event.target;
-    const property = target.id;
     const value = target.value;
     setTitle(value);
   };
+
   const handleChange2 = (event) => {
     const target = event.target;
-    const property = target.id;
     const value = target.value;
     setTitle2(value);
   };
+
   const submitTitle = () => {
-    //console.log(title);
-    //console.log(api.fetchBooks);
-    //api.fetchBooks(setBooks, title);
     api.fetchBookReviews(setReviews, setBooks, title);
   };
-  const submitTitle2 = () => {
-    //console.log(title);
 
+  const submitTitle2 = () => {
     api.fetchReviews(setFilm, title2);
   };
-  //console.log(reviews);
+
   return (
     <>
       <div align="center">
@@ -139,12 +134,13 @@ function UserPage1() {
                 </table>
                 <h3>NYT review links:</h3>
                 <div align="center">
-                    <Card style={{ width: '20rem' }}>
+                  <Card style={{ width: "20rem" }}>
                     {books.map((x) => {
                       if (x.url != null && x.url != "none") {
                         return (
                           <div>
-                            {x.byline}'s review: <a href={x.url}>{x.book_title}</a>
+                            {x.byline}'s review:{" "}
+                            <a href={x.url}>{x.book_title}</a>
                           </div>
                         );
                       }

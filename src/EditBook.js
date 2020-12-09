@@ -17,14 +17,9 @@ const EditBook = ({ editID, books, submitTitle }) => {
     setIsEditing(true);
   }, [editID]);
 
+  useEffect(() => {}, []);
 
-  useEffect(()=>{
-    
-  }, [])
-
-  useEffect(()=>{
-    
-  }, [bookToEdit])
+  useEffect(() => {}, [bookToEdit]);
 
   const handleChange = (event) => {
     const target = event.target;
@@ -37,8 +32,6 @@ const EditBook = ({ editID, books, submitTitle }) => {
   const submitChange = () => {
     setIsEditing(false);
     facade.editBookRev(bookToEdit, setBookSucces);
-    /* const tmpBook = {...bookToEdit, ["summary"]: ""}
-    setBookToEdit({...tmpBook}); */
     submitTitle();
   };
 
@@ -65,17 +58,17 @@ const EditBook = ({ editID, books, submitTitle }) => {
                 <Button onClick={submitChange}>Submit change</Button>
               </form>
               <br />
-              
             </Card>
           )}
         </>
       )}
       {bookSucces.book_title && (
-                      <>
-                      
-                      <p style={{color:"white", backgroundColor:"orange"}}>Review by "{bookSucces.byline}" was edited!</p>
-                      </>
-                    )}
+        <>
+          <p style={{ color: "white", backgroundColor: "orange" }}>
+            Review by "{bookSucces.byline}" was edited!
+          </p>
+        </>
+      )}
     </>
   );
 };

@@ -17,7 +17,7 @@ import {
   editFilmReview,
   deleteFilmReview,
   getUsers,
-  deleteUser
+  deleteUser,
 } from "./settings";
 
 function handleHttpErrors(res) {
@@ -28,18 +28,19 @@ function handleHttpErrors(res) {
 }
 
 function apiFacade() {
-  /* Insert utility-methods from a latter step (d) here (REMEMBER to uncomment in the returned object when you do)*/
-
   const setToken = (token) => {
     localStorage.setItem("jwtToken", token);
   };
+
   const getToken = () => {
     return localStorage.getItem("jwtToken");
   };
+
   const loggedIn = () => {
     const loggedIn = getToken() != null;
     return loggedIn;
   };
+
   const logout = () => {
     localStorage.removeItem("jwtToken");
   };
@@ -55,6 +56,7 @@ function apiFacade() {
         setToken(res.token);
       });
   };
+
   const register = (username, password) => {
     const options = makeOptions2("POST", {
       username: username,
@@ -85,6 +87,7 @@ function apiFacade() {
     const options = makeOptions("GET", true); //True add's the token
     return fetch(mainURL + userInfoEndpoint, options).then(handleHttpErrors);
   };
+
   const fetchDataAdmin = () => {
     const options = makeOptions("GET", true); //True add's the token
     return fetch(mainURL + adminInfoEndpoint, options).then(handleHttpErrors);
@@ -106,6 +109,7 @@ function apiFacade() {
         callback(data);
       });
   };
+
   const fetchBooks = (callback, title) => {
     const options = makeOptions("GET", true);
     console.log(mainURL + books, title, options);
@@ -134,49 +138,52 @@ function apiFacade() {
       });
   };
 
-
   const deleteUsers = (username) => {
-    //const user = {username: username};
     const options = makeOptions("DELETE", true);
-    return fetch(mainURL + deleteUser + username, options)
-    .then(handleHttpErrors);
-
-  }
+    return fetch(mainURL + deleteUser + username, options).then(
+      handleHttpErrors
+    );
+  };
 
   const editBookRev = (body, callback) => {
     const options = makeOptions("PUT", true, body);
-    return fetch(mainURL + editBookReview, options).then(handleHttpErrors)
-    .then(data=>{
-      callback(data);
-    })
+    return fetch(mainURL + editBookReview, options)
+      .then(handleHttpErrors)
+      .then((data) => {
+        callback(data);
+      });
   };
+
   const editFilmRev = (body, callback) => {
     const options = makeOptions("PUT", true, body);
     console.log(mainURL + editFilmReview, options);
-    return fetch(mainURL + editFilmReview, options).then(handleHttpErrors)
-    .then(data=>{
-      callback(data);
-    })
+    return fetch(mainURL + editFilmReview, options)
+      .then(handleHttpErrors)
+      .then((data) => {
+        callback(data);
+      });
   };
+
   const addBookRev = (bookReview, callback) => {
     const options = makeOptions("POST", true, bookReview);
-    return fetch(mainURL + addBookReview, options).then(handleHttpErrors)
-    .then(data=>{
+    return fetch(mainURL + addBookReview, options)
+      .then(handleHttpErrors)
+      .then((data) => {
         callback(data);
-    });
+      });
   };
 
   const addFilmRev = (filmReview, callback) => {
     const options = makeOptions("POST", true, filmReview);
-    return fetch(mainURL + addFilmReview, options).then(handleHttpErrors)
-    .then(data=>{
-      callback(data);
-    })
+    return fetch(mainURL + addFilmReview, options)
+      .then(handleHttpErrors)
+      .then((data) => {
+        callback(data);
+      });
   };
 
   const fetchBookReviews = (callback, callback2, title) => {
     const options = makeOptions("GET", true);
-    //console.log(mainURL + bookReviews, title, options);
     return fetch(mainURL + bookReviews + title, options)
       .then(handleHttpErrors)
       .then((data) => {
@@ -188,16 +195,14 @@ function apiFacade() {
   const getAllUsers = (callback) => {
     const options = makeOptions("GET", true);
     return fetch(mainURL + getUsers, options)
-    .then(handleHttpErrors)
-    .then((data) => {
-      callback(data);
-    })
-
-  }
+      .then(handleHttpErrors)
+      .then((data) => {
+        callback(data);
+      });
+  };
 
   const fetchBookReviewsA = (callback, callback2, title) => {
     const options = makeOptions("GET", true);
-    //console.log(mainURL + bookReviews, title, options);
     return fetch(mainURL + userReviewsB + title, options)
       .then(handleHttpErrors)
       .then((data) => {
@@ -205,6 +210,7 @@ function apiFacade() {
         callback2(data.bookDTOs);
       });
   };
+
   const fetchFilmReviewsA = (callback, callback2, title) => {
     const options = makeOptions("GET", true);
     console.log(mainURL + userReviewsF, title, options);
@@ -216,6 +222,7 @@ function apiFacade() {
         callback2(data);
       });
   };
+
   const fetchReviews = (callback, title) => {
     const options = makeOptions("GET", true);
     return fetch(mainURL + review + title, options)
@@ -278,8 +285,9 @@ function apiFacade() {
     editFilmRev,
     deleteFilmRev,
     getAllUsers,
-    deleteUsers
+    deleteUsers,
   };
 }
+
 const facade = apiFacade();
 export default facade;

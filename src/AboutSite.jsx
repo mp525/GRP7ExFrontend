@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import About from "./About.jpg";
-import m from "./m.jpg";
-import v from "./v.jpg";
-import ma from "./mh.png";
+import About from "./pictures/About.jpg";
+import m from "./pictures/m.jpg";
+import v from "./pictures/v.jpg";
+import ma from "./pictures/mh.png";
 import "./App.css";
 
 function AboutSite() {

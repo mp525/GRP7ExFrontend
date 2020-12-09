@@ -21,23 +21,5 @@ export const SidebarData = [
     path: '/page1',
     icon: <FaIcons.FaCartPlus />,
     cName: 'nav-text'
-  }/* ,
-  {
-    title: 'Search reviews',
-    path: '/page3',
-    icon: <IoIcons.IoMdPeople />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Write reviews',
-    path: '/userPage',
-    icon: <FaIcons.FaEnvelopeOpenText />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Admin page',
-    path: '/page4',
-    icon: <IoIcons.IoMdHelpCircle />,
-    cName: 'nav-text'
-  } */
+  }
 ];

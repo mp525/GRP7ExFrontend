@@ -7,6 +7,7 @@ import EditFilm from "./EditFilm";
 const containerStyle = {
   width: "58.7%",
 };
+
 function AdminFilm() {
   const [title, setTitle] = useState("");
   const [reviews, setReviews] = useState({});
@@ -14,10 +15,7 @@ function AdminFilm() {
   const [editID, setEditID] = useState(0);
   const [delDTO, setDelDTO] = useState({});
 
-  useEffect(()=>{
-    //submitTitle();
-  }, [delDTO])
-  
+  useEffect(() => {}, [delDTO]);
 
   const submitTitle = () => {
     facade.fetchFilmReviewsA(setReviews, setFilm, title);
@@ -27,8 +25,8 @@ function AdminFilm() {
     e.preventDefault();
     const target = e.target;
     setEditID(target.id);
-    setDelDTO({headline:""})
-  }; 
+    setDelDTO({ headline: "" });
+  };
 
   const handleChange = (event) => {
     const target = event.target;
@@ -44,16 +42,11 @@ function AdminFilm() {
     setTimeout(() => {
       submitTitle();
     }, 800);
-    
   };
-
-
 
   return (
     <>
       <div>
-        
-        
         {facade.isAdmin().indexOf("admin") !== -1 && (
           <>
             <Container style={containerStyle}>
@@ -71,13 +64,6 @@ function AdminFilm() {
                   </button>
                   <br />
                   <h4>User reviews:</h4>
-                  <p>
-                 
-                    
-
-                    
-                    
-                  </p>
                   <table className="table">
                     <thead>
                       <tr>
@@ -90,7 +76,6 @@ function AdminFilm() {
                     </thead>
 
                     <tbody>
-                      
                       {film.map((x) => {
                         if (x.id !== 0) {
                           return (
@@ -114,10 +99,12 @@ function AdminFilm() {
                         }
                       })}
                       {delDTO.headline && (
-                                <>
-                                <p style={{color:"white", backgroundColor:"red"}}>Deleted!</p>
-                                </>
-                              )}
+                        <>
+                          <p style={{ color: "white", backgroundColor: "red" }}>
+                            Deleted!
+                          </p>
+                        </>
+                      )}
                     </tbody>
                   </table>
                 </Card.Body>
@@ -130,6 +117,5 @@ function AdminFilm() {
     </>
   );
 }
-
 
 export default AdminFilm;

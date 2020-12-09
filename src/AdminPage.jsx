@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Admin from "./admin.jpg";
+import Admin from "./pictures/admin.jpg";
 import "./App.css";
 import facade from "./apiFacade";
 import AdminBooks from "./AdminBooks";
 import AdminFilm from "./AdminFilm";
-import DeleteUser from "./DeleteUser"; 
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-
-const containerStyle = {
-  width: "58.7%",
-};
+import DeleteUser from "./DeleteUser";
 
 function AdminPage() {
   const [errorAdmin, setErrorAdmin] = useState("");
@@ -55,7 +50,5 @@ function AdminPage() {
     </>
   );
 }
-
-
 
 export default AdminPage;
